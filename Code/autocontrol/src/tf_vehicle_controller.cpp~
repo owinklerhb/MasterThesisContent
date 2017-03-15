@@ -1,0 +1,2797 @@
+//UWVehicle follows the predefined path. 
+/*
+	| | | | | | |
+ 	| | | | | | |
+	| | | | | | |
+	| | | | | | |
+	| | | | | | |
+*/
+//Takes pictures at certain distance. Four camera attached on four corners of the Vehicle. Captures pictures once in 100 steps in X direction.
+//One more camera at the end of the moving arm of the UWVehicle. Captures pictures only at defined positions
+
+#include <ros/ros.h>
+#include <tf/transform_listener.h>
+#include <geometry_msgs/Twist.h>
+#include <std_msgs/Float64MultiArray.h>
+#include <nav_msgs/Odometry.h>
+#include <sensor_msgs/JointState.h>
+#include <sensor_msgs/Image.h>
+#include <tf/LinearMath/Matrix3x3.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <tf/transform_broadcaster.h>
+#include <image_transport/image_transport.h>
+#include <opencv2/highgui/highgui.hpp>
+#include <cv_bridge/cv_bridge.h>
+#include <time.h>
+#include <ctime>
+#include "commonROSFunctions.cpp"
+
+bool imageacqu_flag1=false;
+bool imageacqu_flag2=false;
+bool imageacqu_flag3=false;
+bool imageacqu_flag4=false;
+bool imageacqu_bottom_flag=false;
+
+//Function to set the flags true; For capturing and storing the images from Camera
+void set_imageflags_true()
+	{
+		//imageacqu_flag1=true;
+		//imageacqu_flag2=true;
+		//imageacqu_flag3=true;
+		//imageacqu_flag4=true;
+
+	}
+
+//Forming the file name for  storing purposes
+// Prefixed "Image" with the current date and time in dd-mm-yyyy hh:mm::ss.png
+std::string Form_file_name(std::string folderandfilename)
+	{
+		std::string filename;
+		time_t rawtime;
+		struct tm * timeinfo;
+		char buffer[80];
+		time (&rawtime);
+		timeinfo = localtime(&rawtime);
+		strftime(buffer,80,"%d-%m-%Y %I:%M:%S",timeinfo);
+		std::string str(buffer);
+		filename =   folderandfilename + str + ".png";
+		return filename;
+	}
+
+//Call back function for Subscriber // Subscribed to the Camera topic in UWSim
+// Only when the image is required to be taken the callback function will get executed as the flags (imageacqu_flag1,...) will be set true
+/*void imageCallback1(const sensor_msgs::Image::ConstPtr& msg)
+	{
+		if (imageacqu_flag1)
+			{       	
+				std::string full_filename;       
+				full_filename=Form_file_name("//home//ven//Image//Image1_");
+				ROS_ASSERT(cv::imwrite(full_filename,cv_bridge::toCvShare(msg, "bgr8")->image));
+				imageacqu_flag1=false;
+			}
+	}
+
+void imageCallback2(const sensor_msgs::Image::ConstPtr& msg)
+	{
+		if (imageacqu_flag2)
+			{   
+				std::string full_filename;
+				full_filename=Form_file_name("//home//ven//Image//Image2_");
+				ROS_ASSERT(cv::imwrite(full_filename,cv_bridge::toCvShare(msg, "bgr8")->image));
+				imageacqu_flag2=false;
+			}
+	}
+
+void imageCallback3(const sensor_msgs::Image::ConstPtr& msg)
+	{
+		if (imageacqu_flag3)
+			{
+				std::string full_filename;
+				full_filename=Form_file_name("//home//ven//Image//Image3_");          
+				ROS_ASSERT(cv::imwrite(full_filename,cv_bridge::toCvShare(msg, "bgr8")->image));
+				imageacqu_flag3=false;
+			}
+	}
+
+void imageCallback4(const sensor_msgs::Image::ConstPtr& msg)
+	{
+		if (imageacqu_flag4)
+			{
+				std::string full_filename;
+				full_filename=Form_file_name("//home//ven//Image//Image4_");
+				ROS_ASSERT(cv::imwrite(full_filename,cv_bridge::toCvShare(msg, "bgr8")->image));
+				imageacqu_flag4=false;
+			}
+	}
+
+void imageCallback_bottom_camera(const sensor_msgs::Image::ConstPtr& msg)
+	{
+		if (imageacqu_bottom_flag)
+			{
+				std::string full_filename;
+				full_filename=Form_file_name("//home//ven////Image//Image_bcamera//Image_");
+				ROS_ASSERT(cv::imwrite(full_filename,cv_bridge::toCvShare(msg, "bgr8")->image));
+				imageacqu_bottom_flag=false;
+			}
+	}
+*/
+int main(int argc, char** argv)
+{
+	std::vector<float> Vehicle_velocity;
+	float old_angle_z,old_x,old_y,old_z;	
+	bool isfirstpass;
+	float rateval;
+	int rotcount;
+	bool zeroth_1sttime,zeroth_2ndtime,first_time,second_time,third_time,fourth_time,fifth_time,fifth_2ndtime,sixth_time,seventh_time,eighth_time,ninth_time,tenth_time,eleventh_time,twelth_time;
+	bool thirteenth_time,fourteenth_time,photo_taken,vehicle_positioned;
+	bool fifteenth_time,sixteenth_time,seventeenth_time,eighteenth_time,nineteenth_time,twentieth_time,twentyfirst_time,twentysecond_time,twentysecond_second_time,twentysecond_third_time,
+	twentythird_time,twentyfourth_time,twentyfifth_time,
+	//hier meine values
+	twentysixth_time,
+	twentyseventh_time,
+	twentyeighth_time,
+	twentyninth_time,
+//30
+	thirtyth_time,
+	thirtyfirst_time,
+	thirtysecond_time,
+	thirtythird_time,
+	thirtyfourth_time,
+	thirtyfifth_time,
+	thirtysixth_time,
+	thirtyseventh_time,	
+	thirtyeighth_time,
+	thirtyninth_time,
+//40
+	fourtyth_time,
+	fourtyfirst_time,
+	fourtysecond_time,
+	fourtythird_time,
+	fourtyfourth_time,
+	fourtyfifth_time,
+	fourtysixth_time,
+	fourtyseventh_time,	
+	fourtyeighth_time,
+	fourtyninth_time,
+//50
+	fiftyth_time,
+	fiftyfirst_time,
+	fiftysecond_time,
+	fiftythird_time,
+	fiftyfourth_time,
+	fiftyfifth_time,
+	fiftysixth_time,
+	fiftyseventh_time,	
+	fiftyeighth_time,
+	fiftyninth_time,
+//60
+	sixtyth_time,
+	sixtyfirst_time,
+	sixtysecond_time,
+	sixtythird_time,
+	sixtyfourth_time,
+	sixtyfifth_time,
+	sixtysixth_time,
+	sixtyseventh_time,	
+	sixtyeighth_time,
+	sixtyninth_time,
+//70
+	seventyth_time,
+	seventyfirst_time,
+	seventysecond_time,
+	seventythird_time,
+	seventyfourth_time,
+	seventyfifth_time,
+	seventysixth_time,
+	seventyseventh_time,	
+	seventyeighth_time,
+	seventyninth_time,
+//80
+	eightyth_time,
+	eightyfirst_time,
+	eightysecond_time,
+	eightythird_time,
+	eightyfourth_time,
+	eightyfifth_time,
+	eightysixth_time,
+	eightyseventh_time,	
+	eightyeighth_time,
+	eightyninth_time,
+//90
+	ninetyth_time,
+	ninetyfirst_time,
+	ninetysecond_time,
+	ninetythird_time,
+	ninetyfourth_time,
+	ninetyfifth_time,
+	ninetysixth_time,
+	ninetyseventh_time,	
+	ninetyeighth_time,
+	ninetyninth_time,
+//100
+	hunderedth_time,
+	hunderedfirst_time,
+	hunderedsecond_time,
+	hunderedthird_time,
+	hunderedfourth_time,
+	hunderedfifth_time,
+	hunderedsixth_time,
+	hunderedseventh_time,
+	hunderedeighth_time,
+	hunderedninth_time,
+//110
+	hunderedtenth_time,
+	hunderedeleventh_time,
+	hunderedtwelveth_time,
+	hunderedthirdteenth_time,
+	hunderedfourteenth_time,
+	hunderedfifteenth_time,
+	hunderedsixteenth_time,
+	hunderedseventeenth_time,
+	hunderedeighteenth_time,
+	hunderednineteenth_time,
+//120
+	hunderedtwentyth_time,
+	hunderedtwentyfirst_time,
+	hunderedtwentysecond_time,
+	hunderedtwentythird_time,
+	hunderedtwentyfourth_time,
+	hunderedtwentyfifth_time,
+	hunderedtwentysixth_time,
+	hunderedtwentyseventh_time,	
+	hunderedtwentyeighth_time,
+	hunderedtwentynineth_time,
+//130
+	hunderedthirtyth_time,
+	hunderedthirtyfirst_time,
+	hunderedthirtysecond_time,
+	hunderedthirtythird_time,
+	hunderedthirtyfourth_time,
+	hunderedthirtyfifth_time,
+	hunderedthirtysixth_time,
+	hunderedthirtyseventh_time,	
+	hunderedthirtyeighth_time,
+	hunderedthirtynineth_time,
+//140
+	hunderedfourtyth_time,
+	hunderedfourtyfirst_time,
+	hunderedfourtysecond_time,
+	hunderedfourtythird_time,
+	hunderedfourtyfourth_time,
+	hunderedfourtyfifth_time,
+	hunderedfourtysixth_time,
+	hunderedfourtyseventh_time,	
+	hunderedfourtyeighth_time,
+	hunderedfourtynineth_time,
+//150
+	hunderedfiftyth_time,
+	hunderedfiftyfirst_time,
+	hunderedfiftysecond_time,
+	hunderedfiftythird_time,
+	hunderedfiftyfourth_time,
+	hunderedfiftyfifth_time,
+	hunderedfiftysixth_time,
+	hunderedfiftyseventh_time,
+	hunderedfiftyeighth_time,
+	hunderedfiftynineth_time,
+//160
+	hunderedsixtyth_time,
+	hunderedsixtyfirst_time,
+	hunderedsixtysecond_time,
+	hunderedsixtythird_time,
+	hunderedsixtyfourth_time,
+	hunderedsixtyfifth_time,
+	hunderedsixtysixth_time,
+	hunderedsixtyseventh_time,	
+	hunderedsixtyeighth_time,
+	hunderedsixtynineth_time,
+//170
+	hunderedseventyth_time,
+	hunderedseventyfirst_time,
+	hunderedseventysecond_time,
+	hunderedseventythird_time,
+	hunderedseventyfourth_time,
+	hunderedseventyfifth_time,
+	hunderedseventysixth_time,
+	hunderedseventyseventh_time,
+	hunderedseventyeighth_time,
+	hunderedseventynineth_time,
+//180
+	hunderedeightyth_time,
+	hunderedeightyfirst_time,
+	hunderedeightysecond_time,
+	hunderedeightythird_time,
+	hunderedeightyfourth_time,
+	hunderedeightyfifth_time,
+	hunderedeightysixth_time,
+	hunderedeightyseventh_time,
+	hunderedeightyeighth_time,
+	hunderedeightynineth_time;
+//ende meine values
+
+	first_time=true;second_time=false;third_time=false;fourth_time=false;fifth_time=false;fifth_2ndtime=false;sixth_time=false;seventh_time=false;
+	eighth_time=false;ninth_time=false;tenth_time=false;eleventh_time=false;twelth_time=false;thirteenth_time=false;fourteenth_time=false;
+	fifteenth_time=false;sixteenth_time=false;seventeenth_time=false;eighteenth_time=false;nineteenth_time=false;twentieth_time=false;
+	twentyfirst_time=false;twentysecond_time=false;twentysecond_second_time=false;twentysecond_third_time=false;twentythird_time=false;twentyfourth_time=false;twentyfifth_time=false;
+//meine values
+	twentysixth_time=false;
+	twentyseventh_time=false;
+	twentyeighth_time=false;
+	twentyninth_time=false;
+	thirtyth_time=false;
+//30
+	thirtyfirst_time=false;
+	thirtysecond_time=false;
+	thirtythird_time=false;
+	thirtyfourth_time=false;
+	thirtyfifth_time=false;
+	thirtysixth_time=false;
+	thirtyseventh_time=false;	
+	thirtyeighth_time=false;
+	thirtyninth_time=false;
+//40
+	fourtyth_time=false;
+	fourtyfirst_time=false;
+	fourtysecond_time=false;
+	fourtythird_time=false;
+	fourtyfourth_time=false;
+	fourtyfifth_time=false;
+	fourtysixth_time=false;
+	fourtyseventh_time=false;	
+	fourtyeighth_time=false;
+	fourtyninth_time=false;
+//50
+	fiftyth_time=false;
+	fiftyfirst_time=false;
+	fiftysecond_time=false;
+	fiftythird_time=false;
+	fiftyfourth_time=false;
+	fiftyfifth_time=false;
+	fiftysixth_time=false;
+	fiftyseventh_time=false;	
+	fiftyeighth_time=false;
+	fiftyninth_time=false;
+//60
+	sixtyth_time=false;
+	sixtyfirst_time=false;
+	sixtysecond_time=false;
+	sixtythird_time=false;
+	sixtyfourth_time=false;
+	sixtyfifth_time=false;
+	sixtysixth_time=false;
+	sixtyseventh_time=false;	
+	sixtyeighth_time=false;
+	sixtyninth_time=false;
+//70
+	seventyth_time=false;
+	seventyfirst_time=false;
+	seventysecond_time=false;
+	seventythird_time=false;
+	seventyfourth_time=false;
+	seventyfifth_time=false;
+	seventysixth_time=false;
+	seventyseventh_time=false;	
+	seventyeighth_time=false;
+	seventyninth_time=false;
+//80
+	eightyth_time=false;
+	eightyfirst_time=false;
+	eightysecond_time=false;
+	eightythird_time=false;
+	eightyfourth_time=false;
+	eightyfifth_time=false;
+	eightysixth_time=false;
+	eightyseventh_time=false;	
+	eightyeighth_time=false;
+	eightyninth_time=false;
+//90
+	ninetyth_time=false;
+	ninetyfirst_time=false;
+	ninetysecond_time=false;
+	ninetythird_time=false;
+	ninetyfourth_time=false;
+	ninetyfifth_time=false;
+	ninetysixth_time=false;
+	ninetyseventh_time=false;	
+	ninetyeighth_time=false;
+	ninetyninth_time=false;
+//100
+	hunderedth_time=false;
+	hunderedfirst_time=false;
+	hunderedsecond_time=false;
+	hunderedthird_time=false;
+	hunderedfourth_time=false;
+	hunderedfifth_time=false;
+	hunderedsixth_time=false;
+	hunderedseventh_time=false;	
+	hunderedeighth_time=false;
+	hunderedninth_time=false;
+//110
+	hunderedtenth_time=false;
+	hunderedeleventh_time=false;
+	hunderedtwelveth_time=false;
+	hunderedthirdteenth_time=false;
+	hunderedfourteenth_time=false;
+	hunderedfifteenth_time=false;
+	hunderedsixteenth_time=false;
+	hunderedseventeenth_time=false;	
+	hunderedeighteenth_time=false;
+	hunderednineteenth_time=false;
+//120
+	hunderedtwentyth_time=false;
+	hunderedtwentyfirst_time=false;
+	hunderedtwentysecond_time=false;
+	hunderedtwentythird_time=false;
+	hunderedtwentyfourth_time=false;
+	hunderedtwentyfifth_time=false;
+	hunderedtwentysixth_time=false;
+	hunderedtwentyseventh_time=false;	
+	hunderedtwentyeighth_time=false;
+	hunderedtwentynineth_time=false;
+//130
+	hunderedthirtyth_time=false;
+	hunderedthirtyfirst_time=false;
+	hunderedthirtysecond_time=false;
+	hunderedthirtythird_time=false;
+	hunderedthirtyfourth_time=false;
+	hunderedthirtyfifth_time=false;
+	hunderedthirtysixth_time=false;
+	hunderedthirtyseventh_time=false;	
+	hunderedthirtyeighth_time=false;
+	hunderedthirtynineth_time=false;
+//140
+	hunderedfourtyth_time=false;
+	hunderedfourtyfirst_time=false;
+	hunderedfourtysecond_time=false;
+	hunderedfourtythird_time=false;
+	hunderedfourtyfourth_time=false;
+	hunderedfourtyfifth_time=false;
+	hunderedfourtysixth_time=false;
+	hunderedfourtyseventh_time=false;	
+	hunderedfourtyeighth_time=false;
+	hunderedfourtynineth_time=false;
+//150
+	hunderedfiftyth_time=false;
+	hunderedfiftyfirst_time=false;
+	hunderedfiftysecond_time=false;
+	hunderedfiftythird_time=false;
+	hunderedfiftyfourth_time=false;
+	hunderedfiftyfifth_time=false;
+	hunderedfiftysixth_time=false;
+	hunderedfiftyseventh_time=false;	
+	hunderedfiftyeighth_time=false;
+	hunderedfiftynineth_time=false;
+//160
+	hunderedsixtyth_time=false;
+	hunderedsixtyfirst_time=false;
+	hunderedsixtysecond_time=false;
+	hunderedsixtythird_time=false;
+	hunderedsixtyfourth_time=false;
+	hunderedsixtyfifth_time=false;
+	hunderedsixtysixth_time=false;
+	hunderedsixtyseventh_time=false;	
+	hunderedsixtyeighth_time=false;
+	hunderedsixtynineth_time=false;
+//170
+	hunderedseventyth_time=false;
+	hunderedseventyfirst_time=false;
+	hunderedseventysecond_time=false;
+	hunderedseventythird_time=false;
+	hunderedseventyfourth_time=false;
+	hunderedseventyfifth_time=false;
+	hunderedseventysixth_time=false;
+	hunderedseventyseventh_time=false;	
+	hunderedseventyeighth_time=false;
+	hunderedseventynineth_time=false;
+//180
+	hunderedeightyth_time=false;
+	hunderedeightyfirst_time=false;
+	hunderedeightysecond_time=false;
+	hunderedeightythird_time=false;
+	hunderedeightyfourth_time=false;
+	hunderedeightyfifth_time=false;
+	hunderedeightysixth_time=false;
+	hunderedeightyseventh_time=false;	
+	hunderedeightyeighth_time=false;
+	hunderedeightynineth_time=false;
+	//ende meine values
+
+	
+	photo_taken=false;vehicle_positioned=false;
+	std::string new_listener_name;
+	//std::string topic_name = argv[1];
+	ros::init(argc, argv,"vehicle_tf_listener_UWVehicle");
+	ros::NodeHandle n;
+	image_transport::ImageTransport it(n);
+	
+	ros::Rate loop_rate(10);
+	tf::TransformListener listener;
+
+	//Publishers for Odometry and Joint space
+	ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("dataNavigator", 1);
+	ros::Publisher js_pub = n.advertise<sensor_msgs::JointState>("/uwsim/joint_state_command_UWVehicle", 1);
+
+	int first_pass;
+	double Roll,Pitch,Yaw;
+	float x_value,y_value,z_value,z_rot_value1,z_rot_value,endpart_rotate_axis_x,endpart_rotate_axis_y,endpart_rotate_axis_z;
+	float moved_up,moved_down,j,moved_z,k,n_times;
+	moved_up = 0;
+	moved_down =10;
+	moved_z=0;
+	j=0;k=0;n_times=0;
+	bool arm_extended,arm_retracted;
+	arm_extended = false;
+	arm_retracted=false;
+	tf::Quaternion q;
+	nav_msgs::Odometry odom;
+	tf::StampedTransform transform_endpart,Pose_trans;
+
+	x_value=1000;y_value=1000;z_value=1000;
+	tf::StampedTransform transform_world;
+	int movement_steps;
+	movement_steps=0;
+	float req_z;
+	req_z=-10;
+		
+	//Subscriber of type image_tranport for camera topic from UWSim
+	//image_transport::Subscriber sub1 = it.subscribe("uwsim/camera1", 1, imageCallback1);
+	//image_transport::Subscriber sub2 = it.subscribe("uwsim/camera2", 1, imageCallback2);
+	//image_transport::Subscriber sub3 = it.subscribe("uwsim/camera3", 1, imageCallback3);
+	//image_transport::Subscriber sub4 = it.subscribe("uwsim/camera4", 1, imageCallback4);
+	//image_transport::Subscriber sub5 = it.subscribe("uwsim/bottom_camera1", 1, imageCallback_bottom_camera);
+
+	while (ros::ok())
+	{
+		sensor_msgs::JointState jointstatevalues;
+		//Vehicle position is measured wrt the centre of Vehicle and rotated on the same as Axis. (wrt vehicle's center)
+		try
+		{	
+			listener.waitForTransform("world","girona500/base_link",ros::Time(0),ros::Duration(10.0));
+			listener.lookupTransform("world","girona500/base_link",ros::Time(0), transform_world);
+
+			//listener.waitForTransform("world","UWVehicle/End_part",ros::Time(0),ros::Duration(10.0));
+			//listener.lookupTransform("world","UWVehicle/End_part",ros::Time(0), transform_endpart);						
+		}
+
+		catch (tf::TransformException &ex) 
+		{
+			ROS_ERROR("%s",ex.what());
+			ros::Duration(1.0).sleep();
+		}
+
+		x_value = transform_world.getOrigin().x();
+		y_value = transform_world.getOrigin().y();
+		z_value = transform_world.getOrigin().z();
+
+		n.getParam("Vehicle_controller/Velocity",Vehicle_velocity);
+		n.getParam("Vehicle_controller/first_pass",first_pass);
+
+		std::cout<< "x value" << x_value << std::endl;
+		std::cout<< "y value" << y_value << std::endl;
+		std::cout<< "z value" << z_value << std::endl;
+
+		//endpart_rotate_axis_x = transform_endpart.getOrigin().x();
+		//endpart_rotate_axis_y = transform_endpart.getOrigin().y();
+		//endpart_rotate_axis_z = transform_endpart.getOrigin().z();
+		
+		//Takes the panaromic view of the Coral the distance of -225 in X-direction
+		//Normal movement -- Captures Image at a frequency 100 steps --> When boundary condition fails, the Vehicle rotates.
+		if (first_time) 
+			{
+				std::cout<<"Inside 1st time"<<std::endl;	
+				if(x_value >= 25) 
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");   
+						second_time=true;first_time=false;
+						//hunderedsecond_time=true;first_time=false;
+						//seventyeighth_time=true;first_time=false;
+					}
+				else	
+					{odom = apply_movement(Vehicle_velocity,odom);movement_steps+=1;req_z=-10;moved_z=0;movement_steps=0;arm_retracted=false;}
+			}
+
+		else if (second_time && first_pass!=1)
+			{
+				std::cout<<"Inside 2nd time"<<std::endl;
+				if (y_value<=-0.5) 
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+							//endpart_rotate_axis_x,endpart_rotate_axis_y,endpart_rotate_axis_z,"UWVehicle_world");
+						third_time = true; second_time=false;movement_steps=0;
+					}
+				else {odom = apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (third_time && first_pass!=1)
+			{
+				std::cout<<"Inside 3rd time"<<std::endl;
+				if (x_value<= -25) 
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourth_time = true; third_time=false;fifth_2ndtime=false;
+					}
+				else 
+					{odom = apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fourth_time && first_pass!=1)
+			{
+				std::cout<<"Inside 4th time"<<std::endl;
+				if (y_value <= -1) 
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fifth_time = true; fourth_time=false;movement_steps=0;
+					}
+				else {odom = apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fifth_time && first_pass!=1)
+			{
+				std::cout<<"Inside 5th time"<<std::endl;
+				if (x_value >= 25) 
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fifth_time = false; sixth_time=true; movement_steps=0;
+					}
+				else 
+					{odom = apply_movement(Vehicle_velocity,odom);}
+					
+			}
+
+		else if (sixth_time && first_pass!=1)
+			{
+				std::cout<<"Inside 6th time"<<std::endl;
+				if (y_value <= -1.5) 
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventh_time = true; sixth_time=false;movement_steps=0;
+					}
+				else {odom = apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (seventh_time && first_pass!=1)
+			{
+				std::cout<<"Inside 7th time"<<std::endl;
+				if (x_value <= -25) 
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eighth_time = true; seventh_time=false;
+					}
+				else {odom = apply_movement(Vehicle_velocity,odom);;}
+					
+			}
+
+		else if (eighth_time && first_pass!=1)
+			{
+				std::cout<<"Inside 8th time"<<std::endl;
+				if (y_value <= -2) 
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						ninth_time = true; eighth_time=false;movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+
+		else if (ninth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 9th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						tenth_time = true; ninth_time=false;
+					}
+				else {odom = apply_movement(Vehicle_velocity,odom);}				
+					
+
+			}
+		else if (tenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 10th time"<<std::endl;
+				if (y_value <= -2.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eleventh_time = true; tenth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (eleventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 11th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						twelth_time = true; eleventh_time=false;
+					}
+				else {odom = apply_movement(Vehicle_velocity,odom);}	
+				
+			}
+
+		else if (twelth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 12th time"<<std::endl;
+				if (y_value <= -3)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						thirteenth_time = true; twelth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+		else if (thirteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 13th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourteenth_time = true; thirteenth_time=false;
+					}
+				else {odom = apply_movement(Vehicle_velocity,odom);}	
+					
+			}
+		else if (fourteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 14th time"<<std::endl;
+				if (y_value <=-3.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fifteenth_time = true; fourteenth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+		else if (fifteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 15th time"<<std::endl;
+				if (x_value <=-25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						sixteenth_time = true; fifteenth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}	
+					
+			}
+		else if (sixteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 16th time"<<std::endl;
+				if (y_value <=-4)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventeenth_time = true; sixteenth_time=false;movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+		else if (seventeenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 17th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eighteenth_time = true; seventeenth_time=false;
+					}
+				else {odom = apply_movement(Vehicle_velocity,odom);}	
+					
+			}
+		else if (eighteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 18th time"<<std::endl;
+				if (y_value <= -4.5)
+					{
+						std::cout << "Eighteenth Time" << std::endl;
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						nineteenth_time = true; eighteenth_time=false;movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+		else if (nineteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 19th time"<<std::endl;
+				if (x_value <=-25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						twentieth_time = true; nineteenth_time=false;
+					}
+				else {odom = apply_movement(Vehicle_velocity,odom);}	
+					
+			}
+		else if (twentieth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 20th time"<<std::endl;
+				if (y_value <= -5)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						twentyfirst_time = true; twentieth_time=false;movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+		else if (twentyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 21st time"<<std::endl;
+				if (x_value >=25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						twentysecond_time = true; twentyfirst_time=false;
+					}
+				else  {odom = apply_movement(Vehicle_velocity,odom);}	
+					
+			}
+
+		else if (twentysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 22nd time"<<std::endl;
+				if (y_value <= -5.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						twentythird_time = true; twentysecond_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+					
+
+		else if (twentythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 23rd time"<<std::endl;
+				if (x_value <=-25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						twentythird_time = false; twentyfourth_time=true;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			} 
+
+		else if (twentyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 24th time"<<std::endl;
+				if (y_value <= -6)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						twentyfifth_time = true; twentyfourth_time=false;
+					}
+				 else {odom = apply_movement(Vehicle_velocity,odom);}	
+					
+			}
+		else if (twentyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 25th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						twentysixth_time = true; twentyfifth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+//ab hier meine values
+		else if (twentysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 26th time"<<std::endl;
+				if (y_value <= -6.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						twentyseventh_time = true; twentysixth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (twentyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 27th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						twentyeighth_time = true; twentyseventh_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+		else if (twentyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 28th time"<<std::endl;
+				if (y_value <= -7)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						twentyninth_time = true; twentyeighth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (twentyninth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 29th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						thirtyth_time = true; twentyninth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+//----THIRTY
+		else if (thirtyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 30th time"<<std::endl;
+				if (y_value <= -7.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						thirtyfirst_time = true; thirtyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (thirtyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 31st time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						thirtysecond_time = true; thirtyfirst_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (thirtysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 32nd time"<<std::endl;
+				if (y_value <= -8)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						thirtythird_time = true; thirtysecond_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (thirtythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 33rd time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						thirtyfourth_time = true; thirtythird_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (thirtyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 34th time"<<std::endl;
+				if (y_value <= -8.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						thirtyfifth_time = true; thirtyfourth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (thirtyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 35th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						thirtysixth_time = true; thirtyfifth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (thirtysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 36th time"<<std::endl;
+				if (y_value <= -9)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						thirtyseventh_time = true; thirtysixth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (thirtyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 37th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						thirtyeighth_time = true; thirtyseventh_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (thirtyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 38th time"<<std::endl;
+				if (y_value <= -9.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						thirtyninth_time = true; thirtyeighth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (thirtyninth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 39th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourtyth_time = true; thirtyninth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+//----FOURTY
+		else if (fourtyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 40th time"<<std::endl;
+				if (y_value <= -10)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourtyfirst_time = true; fourtyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fourtyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 41st time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourtysecond_time = true; fourtyfirst_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fourtysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 42nd time"<<std::endl;
+				if (y_value <= -10.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourtythird_time = true; fourtysecond_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fourtythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 43rd time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourtyfourth_time = true; fourtythird_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fourtyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 44th time"<<std::endl;
+				if (y_value <= -11)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourtyfifth_time = true; fourtyfourth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fourtyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 45th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourtysixth_time = true; fourtyfifth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fourtysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 46th time"<<std::endl;
+				if (y_value <= -11.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourtyseventh_time = true; fourtysixth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fourtyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 47th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourtyeighth_time = true; fourtyseventh_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fourtyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 48th time"<<std::endl;
+				if (y_value <= -12)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fourtyninth_time = true; fourtyeighth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fourtyninth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 49th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fiftyth_time = true; fourtyninth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+//----FIFTY
+		else if (fiftyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 50th time"<<std::endl;
+				if (y_value <= -12.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fiftyfirst_time = true; fiftyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fiftyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 51st time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fiftysecond_time = true; fiftyfirst_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fiftysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 52nd time"<<std::endl;
+				if (y_value <= -13)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fiftythird_time = true; fiftysecond_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fiftythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 53rd time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fiftyfourth_time = true; fiftythird_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fiftyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 54th time"<<std::endl;
+				if (y_value <= -13.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fiftyfifth_time = true; fiftyfourth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fiftyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 55th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fiftysixth_time = true; fiftyfifth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fiftysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 56th time"<<std::endl;
+				if (y_value <= -14)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fiftyseventh_time = true; fiftysixth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fiftyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 57th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fiftyeighth_time = true; fiftyseventh_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fiftyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 58th time"<<std::endl;
+				if (y_value <= -14.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						fiftyninth_time = true; fiftyeighth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (fiftyninth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 59th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						sixtyth_time = true; fiftyninth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+//----SIXTY
+		else if (sixtyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 60th time"<<std::endl;
+				if (y_value <= -15)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						sixtyfirst_time = true; sixtyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (sixtyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 61st time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						sixtysecond_time = true; sixtyfirst_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (sixtysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 62nd time"<<std::endl;
+				if (y_value <= -15.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						sixtythird_time = true; sixtysecond_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (sixtythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 63rd time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						sixtyfourth_time = true; sixtythird_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (sixtyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 64th time"<<std::endl;
+				if (y_value <= -16)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						sixtyfifth_time = true; sixtyfourth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (sixtyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 65th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						sixtysixth_time = true; sixtyfifth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (sixtysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 66th time"<<std::endl;
+				if (y_value <= -16.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						sixtyseventh_time = true; sixtysixth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (sixtyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 67th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						sixtyeighth_time = true; sixtyseventh_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (sixtyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 68th time"<<std::endl;
+				if (y_value <= -17)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						sixtyninth_time = true; sixtyeighth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (sixtyninth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 69th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventyth_time = true; sixtyninth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+//----SEVENTY
+		else if (seventyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 70th time"<<std::endl;
+				if (y_value <= -17.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventyfirst_time = true; seventyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (seventyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 71st time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventysecond_time = true; seventyfirst_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (seventysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 72nd time"<<std::endl;
+				if (y_value <= -18)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventythird_time = true; seventysecond_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (seventythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 73rd time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventyfourth_time = true; seventythird_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (seventyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 74th time"<<std::endl;
+				if (y_value <= -18.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventyfifth_time = true; seventyfourth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (seventyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 75th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventysixth_time = true; seventyfifth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (seventysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 76th time"<<std::endl;
+				if (y_value <= -19)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventyseventh_time = true; seventysixth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (seventyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 77th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventyeighth_time = true; seventyseventh_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (seventyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 78th time"<<std::endl;
+				if (y_value <= -19.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						seventyninth_time = true; seventyeighth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (seventyninth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 79th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eightyth_time = true; seventyninth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+//----EIGHTY
+		else if (eightyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 80th time"<<std::endl;
+				if (y_value <= -20)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eightyfirst_time = true; eightyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (eightyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 81st time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eightysecond_time = true; eightyfirst_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (eightysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 82nd time"<<std::endl;
+				if (y_value <= -20.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eightythird_time = true; eightysecond_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (eightythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 83rd time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eightyfourth_time = true; eightythird_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (eightyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 84th time"<<std::endl;
+				if (y_value <= -21)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eightyfifth_time = true; eightyfourth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (eightyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 85th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eightysixth_time = true; eightyfifth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (eightysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 86th time"<<std::endl;
+				if (y_value <= -21.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eightyseventh_time = true; eightysixth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (eightyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 87th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eightyeighth_time = true; eightyseventh_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (eightyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 88th time"<<std::endl;
+				if (y_value <= -22)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eightyninth_time = true; eightyeighth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (eightyninth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 89th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						ninetyth_time = true; eightyninth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+//----NINETY
+		else if (ninetyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 90th time"<<std::endl;
+				if (y_value <= -22.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						ninetyfirst_time = true; ninetyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (ninetyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 91st time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						ninetysecond_time = true; ninetyfirst_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (ninetysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 92nd time"<<std::endl;
+				if (y_value <= -23)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						ninetythird_time = true; ninetysecond_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (ninetythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 93rd time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						ninetyfourth_time = true; ninetythird_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (ninetyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 94th time"<<std::endl;
+				if (y_value <= -23.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						ninetyfifth_time = true; ninetyfourth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (ninetyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 95th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						ninetysixth_time = true; ninetyfifth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (ninetysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 96th time"<<std::endl;
+				if (y_value <= -24)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						ninetyseventh_time = true; ninetysixth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (ninetyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 97th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						eightyeighth_time = true; eightyseventh_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (ninetyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 98th time"<<std::endl;
+				if (y_value <= -24.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						ninetyninth_time = true; ninetyeighth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (ninetyninth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 99th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,-90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedth_time = true; ninetyninth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+//----HUNDERED
+		else if (hunderedth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 100th time"<<std::endl;
+				if (y_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfirst_time = true; hunderedth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 101st time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsecond_time = true; hunderedfirst_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 102nd time"<<std::endl;
+				if (y_value >= 0.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthird_time = true; hunderedsecond_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedthird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 103rd time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourth_time = true; hunderedthird_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 104th time"<<std::endl;
+				if (y_value >= 1)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfifth_time = true; hunderedfourth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 105th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixth_time = true; hunderedfifth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 106th time"<<std::endl;
+				if (y_value >= 1.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventh_time = true; hunderedsixth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 107th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeighth_time = true; hunderedseventh_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 108th time"<<std::endl;
+				if (y_value >= 2)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedninth_time = true; hunderedeighth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedninth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 109th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtenth_time = true; hunderedninth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+//----HUNDEREDTEN
+		else if (hunderedtenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 110th time"<<std::endl;
+				if (y_value >= 2.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeleventh_time = true; hunderedtenth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedeleventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 111th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtwelveth_time = true; hunderedeleventh_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedtwelveth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 112th time"<<std::endl;
+				if (y_value >= 3)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthirdteenth_time = true; hunderedtwelveth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedthirdteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 113th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourteenth_time = true; hunderedthirdteenth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfourteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 114th time"<<std::endl;
+				if (y_value >= 3.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfifteenth_time = true; hunderedfourteenth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfifteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 115th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixteenth_time = true; hunderedfifteenth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 116th time"<<std::endl;
+				if (y_value >= 4)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventeenth_time = true; hunderedsixteenth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedseventeenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 117th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeighteenth_time = true; hunderedseventeenth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedeighteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 118th time"<<std::endl;
+				if (y_value >= 4.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderednineteenth_time = true; hunderedeighteenth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderednineteenth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 119th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtwentyth_time = true; hunderednineteenth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+//----HUNDEREDTWENTY
+		else if (hunderedtwentyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 120th time"<<std::endl;
+				if (y_value >= 5)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtwentyfirst_time = true; hunderedtwentyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedtwentyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 121st time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtwentysecond_time = true; hunderedtwentyfirst_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedtwentysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 122nd time"<<std::endl;
+				if (y_value >= 5.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtwentythird_time = true; hunderedtwentysecond_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedtwentythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 123rd time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtwentyfourth_time = true; hunderedtwentythird_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedtwentyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 124th time"<<std::endl;
+				if (y_value >= 6)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtwentyfifth_time = true; hunderedtwentyfourth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedtwentyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 125th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtwentysixth_time = true; hunderedtwentyfifth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedtwentysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 126th time"<<std::endl;
+				if (y_value >= 6.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtwentyseventh_time = true; hunderedtwentysixth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedtwentyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 127th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtwentyeighth_time = true; hunderedtwentyseventh_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedtwentyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 128th time"<<std::endl;
+				if (y_value >= 7)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedtwentynineth_time = true; hunderedtwentyeighth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedtwentynineth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 129th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthirtyth_time = true; hunderedtwentynineth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+//----HUNDEREDTHIRTY
+		else if (hunderedthirtyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 130th time"<<std::endl;
+				if (y_value >= 7.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthirtyfirst_time = true; hunderedthirtyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedthirtyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 131st time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthirtysecond_time = true; hunderedthirtyfirst_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedthirtysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 132nd time"<<std::endl;
+				if (y_value >= 8)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthirtythird_time = true; hunderedthirtysecond_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedthirtythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 133rd time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthirtyfourth_time = true; hunderedthirtythird_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedthirtyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 134th time"<<std::endl;
+				if (y_value >= 8.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthirtyfifth_time = true; hunderedthirtyfourth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedthirtyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 135th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthirtysixth_time = true; hunderedthirtyfifth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedthirtysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 136th time"<<std::endl;
+				if (y_value >= 9)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthirtyseventh_time = true; hunderedthirtysixth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedthirtyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 137th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthirtyeighth_time = true; hunderedthirtyseventh_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedthirtyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 138th time"<<std::endl;
+				if (y_value >= 9.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedthirtynineth_time = true; hunderedthirtyeighth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedthirtynineth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 139th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourtyth_time = true; hunderedthirtynineth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+//----HUNDEREDFOURTY
+		else if (hunderedfourtyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 140th time"<<std::endl;
+				if (y_value >= 10)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourtyfirst_time = true; hunderedfourtyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfourtyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 141st time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourtysecond_time = true; hunderedfourtyfirst_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfourtysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 142nd time"<<std::endl;
+				if (y_value >= 10.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourtythird_time = true; hunderedfourtysecond_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfourtythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 143rd time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourtyfourth_time = true; hunderedfourtythird_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfourtyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 144th time"<<std::endl;
+				if (y_value >= 11)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourtyfifth_time = true; hunderedfourtyfourth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfourtyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 145th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourtysixth_time = true; hunderedfourtyfifth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfourtysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 146th time"<<std::endl;
+				if (y_value >= 11.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourtyseventh_time = true; hunderedfourtysixth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfourtyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 147th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourtyeighth_time = true; hunderedfourtyseventh_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfourtyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 148th time"<<std::endl;
+				if (y_value >= 12)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfourtynineth_time = true; hunderedfourtyeighth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfourtynineth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 149th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfiftyth_time = true; hunderedfourtynineth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+//----HUNDEREDFIFTY
+		else if (hunderedfiftyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 150th time"<<std::endl;
+				if (y_value >= 12.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfiftyfirst_time = true; hunderedfiftyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfiftyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 151st time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfiftysecond_time = true; hunderedfiftyfirst_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfiftysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 152nd time"<<std::endl;
+				if (y_value >= 13)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfiftythird_time = true; hunderedfiftysecond_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfiftythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 153rd time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfiftyfourth_time = true; hunderedfiftythird_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfiftyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 154th time"<<std::endl;
+				if (y_value >= 13.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfiftyfifth_time = true; hunderedfiftyfourth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfiftyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 155th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfiftysixth_time = true; hunderedfiftyfifth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfiftysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 156th time"<<std::endl;
+				if (y_value >= 14)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfiftyseventh_time = true; hunderedfiftysixth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfiftyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 157th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfiftyeighth_time = true; hunderedfiftyseventh_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfiftyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 158th time"<<std::endl;
+				if (y_value >= 14.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedfiftynineth_time = true; hunderedfiftyeighth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedfiftynineth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 159th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixtyth_time = true; hunderedfiftynineth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+//----HUNDEREDSIXTY
+		else if (hunderedsixtyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 160th time"<<std::endl;
+				if (y_value >= 15)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixtyfirst_time = true; hunderedsixtyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixtyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 161st time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixtysecond_time = true; hunderedsixtyfirst_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixtysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 162nd time"<<std::endl;
+				if (y_value >= 15.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixtythird_time = true; hunderedsixtysecond_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixtythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 163rd time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixtyfourth_time = true; hunderedsixtythird_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixtyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 164th time"<<std::endl;
+				if (y_value >= 16)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixtyfifth_time = true; hunderedsixtyfourth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixtyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 165th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixtysixth_time = true; hunderedsixtyfifth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixtysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 166th time"<<std::endl;
+				if (y_value >= 16.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixtyseventh_time = true; hunderedsixtysixth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixtyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 167th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixtyeighth_time = true; hunderedsixtyseventh_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixtyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 168th time"<<std::endl;
+				if (y_value >= 17)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedsixtynineth_time = true; hunderedsixtyeighth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixtynineth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 169th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventyth_time = true; hunderedsixtynineth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+//----HUNDEREDSEVENTY
+		else if (hunderedseventyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 170th time"<<std::endl;
+				if (y_value >= 17.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventyfirst_time = true; hunderedseventyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedseventyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 171st time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventysecond_time = true; hunderedseventyfirst_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedseventysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 172nd time"<<std::endl;
+				if (y_value >= 18)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventythird_time = true; hunderedseventysecond_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedseventythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 173rd time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventyfourth_time = true; hunderedseventythird_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedseventyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 174th time"<<std::endl;
+				if (y_value >= 18.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventyfifth_time = true; hunderedseventyfourth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedseventyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 175th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventysixth_time = true; hunderedseventyfifth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedseventysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 176th time"<<std::endl;
+				if (y_value >= 19)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventyseventh_time = true; hunderedseventysixth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedseventyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 177th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventyeighth_time = true; hunderedseventyseventh_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedseventyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 178th time"<<std::endl;
+				if (y_value >= 19.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedseventynineth_time = true; hunderedseventyeighth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedseventynineth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 179th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeightyth_time = true; hunderedseventynineth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+//----HUNDEREDEIGHTY
+		else if (hunderedeightyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 180th time"<<std::endl;
+				if (y_value >= 20)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeightyfirst_time = true; hunderedeightyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedeightyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 181st time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeightysecond_time = true; hunderedeightyfirst_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedsixtysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 182nd time"<<std::endl;
+				if (y_value >= 20.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeightythird_time = true; hunderedeightysecond_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedeightythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 183rd time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeightyfourth_time = true; hunderedeightythird_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedeightyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 184th time"<<std::endl;
+				if (y_value >= 21)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeightyfifth_time = true; hunderedeightyfourth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedeightyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 185th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeightysixth_time = true; hunderedeightyfifth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedeightysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 186th time"<<std::endl;
+				if (y_value >= 21.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeightyseventh_time = true; hunderedeightysixth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedeightyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 187th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeightyeighth_time = true; hunderedeightyseventh_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedeightyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 188th time"<<std::endl;
+				if (y_value >= 22)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedeightynineth_time = true; hunderedeightyeighth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedeightynineth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 189th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						first_time = true; hunderedeightynineth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+//----HUNDEREDNINETY
+/*		else if (hunderedninetyth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 170th time"<<std::endl;
+				if (y_value >= 17.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedninetyfirst_time = true; hunderedsninetyth_time=false;//movement_steps=0;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedninetyfirst_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 171st time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedninetysecond_time = true; hunderedninetyfirst_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedninetysecond_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 172nd time"<<std::endl;
+				if (y_value >= 18)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedninetythird_time = true; hunderedninetysecond_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedninetythird_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 173rd time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedninetyfourth_time = true; hunderedninetythird_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedninetyfourth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 174th time"<<std::endl;
+				if (y_value >= 19.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedninetyfifth_time = true; hunderedninetyfourth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedninetyfifth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 175th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedninetysixth_time = true; hunderedninetyfifth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedninetysixth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 176th time"<<std::endl;
+				if (y_value >= 20)
+					{
+						odom = rotate_vehicle(0,0,0,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedninetyseventh_time = true; hunderedninetysixth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedninetyseventh_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 177th time"<<std::endl;
+				if (x_value >= 25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedninetyeighth_time = true; hunderedninetyseventh_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedninetyeighth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 178th time"<<std::endl;
+				if (y_value >= 20.5)
+					{
+						odom = rotate_vehicle(0,0,180,odom,x_value,y_value,z_value,"UWVehicle_world");
+						hunderedninetynineth_time = true; hunderedninetyeighth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}
+
+		else if (hunderedninetynineth_time && first_pass!=1)	
+			{
+				std::cout<<"Inside 179th time"<<std::endl;
+				if (x_value <= -25)
+					{
+						odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+						first_time = true; hunderedninetynineth_time=false;
+					}
+				else {odom =apply_movement(Vehicle_velocity,odom);}
+			}*/
+//ende meine values
+
+		
+		if (first_pass==1) {n.setParam("Vehicle_controller/first_pass",0);}
+		
+		odom_pub.publish(odom);
+		if (arm_extended or arm_retracted) {js_pub.publish(jointstatevalues);}
+		ros::spinOnce();
+		loop_rate.sleep();	
+	}
+	return 0;
+}

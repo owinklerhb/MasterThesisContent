@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="uwsim" type="uwsim" name="autocontrol" respawn="false"  args="--configfile scene24_test.xml" output="screen"/>
+  <node pkg="autocontrol" type="autobroadcaster" name="autobroadcaster_vehicle" respawn="false" output="screen"/>
+  <node pkg="autocontrol" type="UWVehicle_controller" name="Vehicle_controller" respawn="false" output="screen">
+    <rosparam param="Velocity"> [0.5,0,0.0,0.0,0.0,0.0]</rosparam>
+    <rosparam param="first_pass"> 1 </rosparam>
+  </node>
+</launch>
