@@ -1,0 +1,1029 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "1"
+
+\end_inset
+
+Walker, B.
+ K.
+ (2009).
+ Benthic habitat mapping of Miami-Dade County: Visual interpretation of
+ LADS bathymetry and aerial photography.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "2"
+
+\end_inset
+
+Palomeras, N., Ridao, P., Ribas, D., & Vallicrosa, G.
+ (2014).
+ Autonomous I-AUV docking for fixed-base manipulation.
+ IFAC Proceedings Volumes, 47(3), 12160-12165.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "3"
+
+\end_inset
+
+Creel, L.
+ (2003).
+ Ripple effects: population and coastal regions.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "4"
+
+\end_inset
+
+Bulthuis, D.
+ A.
+ (1987).
+ Effects of temperature on photosynthesis and growth of seagrasses.
+ Aquatic Botany, 27(1), 27-40.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "5"
+
+\end_inset
+
+Congdon, R.
+ A., & McComb, A.
+ J.
+ (1979).
+ Productivity of Ruppia: seasonal changes and dependence on light in an
+ Australian estuary.
+ Aquatic Botany, 6, 121-132.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "6"
+
+\end_inset
+
+Sütő, B., Dóczi, R., Kalló, J., Takács, B., Várkonyi, T.
+ A., Haidegger, T., & Kozlovszky, M.
+ (2015, November).
+ HSV color space based buoy detection module for autonomous underwater vehicles.
+ In Computational Intelligence and Informatics (CINTI), 2015 16th IEEE Internati
+onal Symposium on (pp.
+ 329-332).
+ IEEE.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "7"
+
+\end_inset
+
+Prats, M., Pérez, J., Fernández, J.
+ J., & Sanz, P.
+ J.
+ (2012, October).
+ An open source tool for simulation and supervision of underwater intervention
+ missions.
+ In 2012 IEEE/RSJ International Conference on Intelligent Robots and Systems
+ (pp.
+ 2577-2582).
+ IEEE.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "8"
+
+\end_inset
+
+Renton, M., Airey, M., Cambridge, M.
+ L., & Kendrick, G.
+ A.
+ (2011).
+ Modelling seagrass growth and development to evaluate transplanting strategies
+ for restoration.
+ Annals of botany, mcr131.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "9"
+
+\end_inset
+
+Bell, S.
+ S., Tewfik, A., Hall, M.
+ O., & Fonseca, M.
+ S.
+ (2008).
+ Evaluation of seagrass planting and monitoring techniques: implications
+ for assessing restoration success and habitat equivalency.
+ Restoration Ecology, 16(3), 407-416.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "10"
+
+\end_inset
+
+Vasilijevic, A., Miskovic, N., Vukic, Z., & Mandic, F.
+ (2014, June).
+ Monitoring of seagrass by lightweight AUV: A Posidonia oceanica case study
+ surrounding Murter island of Croatia.
+ In Control and Automation (MED), 2014 22nd Mediterranean Conference of
+ (pp.
+ 758-763).
+ IEEE.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "11"
+
+\end_inset
+
+McKenzie, L.
+ J.
+ (2003).
+ Guidelines for the rapid assessment and mapping of tropical seagrass habitats.
+ Cairns: QFS, NFC.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "12"
+
+\end_inset
+
+Walker, D.
+ I., & McComb, A.
+ J.
+ (1992).
+ Seagrass degradation in Australian coastal waters.
+ Marine Pollution Bulletin, 25(5-8), 191-195.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "13"
+
+\end_inset
+
+Winters, G., Edelist, D., Shem‐Tov, R., Beer, S., & Rilov, G.
+ (2016).
+ A low cost field‐survey method for mapping seagrasses and their potential
+ threats: an example from the northern Gulf of Aqaba, Red Sea.
+ Aquatic Conservation: Marine and Freshwater Ecosystems.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "14"
+
+\end_inset
+
+http://dawnssedstrat.blogspot.de/2013/01/sedimentary-structures-part-2.html,
+ checked: 31.01.2017
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "15"
+
+\end_inset
+
+Blidberg, D.
+ R.
+ (2001, May).
+ The development of autonomous underwater vehicles (AUV); a brief summary.
+ In IEEE ICRA (Vol.
+ 4).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "16"
+
+\end_inset
+
+Griffiths, G., Birch, K.
+ G., Millard, N.
+ W., McPhail, S.
+ D., Stevenson, P., Pebody, M., ...
+ & Harris, A.
+ (2000, January).
+ Oceanographic surveys with a 50 hour endurance autonomous underwater vehicle.
+ In Offshore Technology Conference.
+ Offshore Technology Conference.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "17"
+
+\end_inset
+
+Hu, J., Liu, S., & Zhang, R.
+ (2016).
+ A New Exploitation Tool of Seafloor Massive Sulfide.
+ Thalassas: An International Journal of Marine Sciences, 32(2), 101-104.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "18"
+
+\end_inset
+
+Jaynes, C., Riseman, E., & Hanson, A.
+ (2003).
+ Recognition and reconstruction of buildings from multiple aerial images.
+ Computer Vision and Image Understanding, 90(1), 68-98.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "19"
+
+\end_inset
+
+Yazdani, F., Brieber, B., & Beetz, M.
+ (2016).
+ Cognition-enabled robot control for mixed human-robot rescue teams.
+ In Intelligent Autonomous Systems 13 (pp.
+ 1357-1369).
+ Springer International Publishing.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "20"
+
+\end_inset
+
+Blumenthal, S., Brieber, B., Huebel, N., Yazdani, F., Beetz, M., & Bruyninckx,
+ H.
+ (2016, October).
+ A Case Study for Integrating Heterogeneous Knowledge Bases for Outdoor
+ Environments.
+ In Integrating Multiple Knowledge Representation and Reasoning Techniques
+ in Robotics (MIRROR-16).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "21"
+
+\end_inset
+
+McRoy, C.
+ P.
+ (1974).
+ Seagrass productivity: carbon uptake experiments in eelgrass, Zostera marina.
+ Aquaculture, 4, 131-137.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "22"
+
+\end_inset
+
+Orth, R.
+ J., Carruthers, T.
+ J., Dennison, W.
+ C., Duarte, C.
+ M., Fourqurean, J.
+ W., Heck, K.
+ L., ...
+ & Short, F.
+ T.
+ (2006).
+ A global crisis for seagrass ecosystems.
+ Bioscience, 56(12), 987-996.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "23"
+
+\end_inset
+
+Brodie, J., Williamson, C.
+ J., Smale, D.
+ A., Kamenos, N.
+ A., Mieszkowska, N., Santos, R., ...
+ & Asnaghi, V.
+ (2014).
+ The future of the northeast Atlantic benthic flora in a high CO2 world.
+ Ecology and evolution, 4(13), 2787-2798.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "24"
+
+\end_inset
+
+West, J.
+ A., Calumpong, H.
+ P., Martin, G., & van Gaever, S.
+ (2016).
+ .
+ Kelp Forests and Seagrass Meadows.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "25"
+
+\end_inset
+
+Heck Jnr, K.
+ L., Hays, G., & Orth, R.
+ J.
+ (2003).
+ Critical evaluation of the nursery role hypothesis for seagrass meadows.
+ Marine Ecology Progress Series, 253, 123-136.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "26"
+
+\end_inset
+
+Petillot, Y.
+ R., Reed, S.
+ R., & Bell, J.
+ M.
+ (2002, October).
+ Real time AUV pipeline detection and tracking using side scan sonar and
+ multi-beam echo-sounder.
+ In OCEANS'02 MTS/IEEE (Vol.
+ 1, pp.
+ 217-222).
+ IEEE.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "27"
+
+\end_inset
+
+Quigley, M., Conley, K., Gerkey, B., Faust, J., Foote, T., Leibs, J., ...
+ & Ng, A.
+ Y.
+ (2009, May).
+ ROS: an open-source Robot Operating System.
+ In ICRA workshop on open source software (Vol.
+ 3, No.
+ 3.2, p.
+ 5).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "28"
+
+\end_inset
+
+Sandig, J.
+ D.
+ E., Somoba, R.
+ M., Concepcion, M.
+ B., & Gerardo, B.
+ D.
+ (2013).
+ Mining Online GIS for Crime Rate and Models based on Frequent Pattern Analysis.
+ In Proceedings of the World Congress on Engineering and Computer Science
+ (Vol.
+ 2, pp.
+ 23-27).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "29"
+
+\end_inset
+
+Prats, M.; Perez, J.; Fernandez, J.J.; Sanz, P.J., "An open source tool for simulation
+ and supervision of underwater intervention missions", 2012 IEEE/RSJ Internation
+al Conference on Intelligent Robots and Systems (IROS), pp.
+ 2577-2582, 7-12 Oct.
+ 2012
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "30"
+key "30"
+
+\end_inset
+
+Smithsonian National Museum of Natural History (http://ocean.si.edu/seagrass-and-s
+eagrass-beds (Last check: 03/10/17 12:30pm))
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "31"
+key "31"
+
+\end_inset
+
+Elizabeth Mcleod, Gail L Chmura, Steven Bouillon, Rodney Salm, Mats Björk,
+ Carlos M Duarte, Catherine E Lovelock, William H Schlesinger, and Brian
+ R Silliman (2011).
+ A blueprint for blue carbon: toward an improved understanding of the role
+ of vegetated coastal habitats in sequestering 
+\begin_inset Formula $CO_{2}$
+\end_inset
+
+, Front Ecol Environ 2011; 9(10): 552–560, doi:10.1890/110004 (published
+ online 20 Jun 2011)
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "32"
+key "32"
+
+\end_inset
+
+Semrec source for hierarchical cognition recording: https://github.com/code-iai/s
+emrec (last check: 03/10/17 3:05pm)
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "33"
+key "33"
+
+\end_inset
+
+Wynn, R.
+ B., Huvenne, V.
+ A., Le Bas, T.
+ P., Murton, B.
+ J., Connelly, D.
+ P., Bett, B.
+ J., ...
+ & Sumner, E.
+ J.
+ (2014).
+ Autonomous Underwater Vehicles (AUVs): Their past, present and future contribut
+ions to the advancement of marine geoscience.
+ Marine Geology, 352, 451-468.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "34"
+key "34"
+
+\end_inset
+
+Dupré, S., Buffet, G., Mascle, J.
+ et al.
+ Mar Geophys Res (2008) 29: 275.
+ doi:10.1007/s11001-009-9063-3
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "35"
+key "35"
+
+\end_inset
+
+Foucher, J.-P., G.K.
+ Westbrook, A.
+ Boetius, S.
+ Ceramicola, S.
+ Dupré, J.
+ Mascle, J.
+ Mienert, O.
+ Pfannkuche, C.
+ Pierre, and D.
+ Praeg.
+ 2009.
+ Structure and drivers of cold seep ecosystems.
+ Oceanography 22(1):92–109, http://dx.doi.org/10.5670/oceanog.2009.11.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "36"
+key "36"
+
+\end_inset
+
+Jamie K.S.
+ Wagner, Molly H.
+ McEntee, Laura L.
+ Brothers, Christopher R.
+ German, Carl L.
+ Kaiser, Dana R.
+ Yoerger, Cindy Lee Van Dover, Cold-seep habitat mapping: High-resolution
+ spatial characterization of the Blake Ridge Diapir seep field, Deep Sea
+ Research Part II: Topical Studies in Oceanography, Volume 92, August 2013,
+ Pages 183-188, ISSN 0967-0645, http://dx.doi.org/10.1016/j.dsr2.2013.02.008.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "37"
+key "37"
+
+\end_inset
+
+Y.
+ Marcon, H.
+ Sahling, C.
+ Borowski, C.
+ dos Santos Ferreira, J.
+ Thal, G.
+ Bohrmann, Megafaunal distribution and assessment of total methane and sulfide
+ consumption by mussel beds at Menez Gwen hydrothermal vent, based on geo-refere
+nced photomosaics, Deep Sea Research Part I: Oceanographic Research Papers,
+ Volume 75, May 2013, Pages 93-109, ISSN 0967-0637, http://dx.doi.org/10.1016/j.dsr.2
+013.01.008.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "38"
+key "38"
+
+\end_inset
+
+Wynn, R.B., Bett, B.J., Evans, A.J., Grif fi ths, G., Huvenne, V.A.I., Jones, A.R.,
+ Palmer, M.R., Dove, D., Howe, J.A., Boyd, T.J., MAREMAP partners, 2012.
+ Investigating the feasibility of utilizing AUV and Glider technology for
+ mapping and monitoring of the UK MPA network.
+ Final Report for Defra Project MB0118.
+ National Oceanography Centre, Southampton (244 pp.).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "39"
+key "39"
+
+\end_inset
+
+Galerne, E., 1983.
+ Epaulard ROV used in NOAA polymetallic sul fi de research.
+ Sea Technol- ogy 24, 40 – 42.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "40"
+key "40"
+
+\end_inset
+
+Kennish, M.J., Haag, S.M., Sakowicz, G.P., Tidd, R.A., 2004.
+ Sidescan sonar imaging of subtidal benthic habitats in the Mullica River
+ – Great Bay Estuarine System.
+ Journal of Coastal Research 45, 227 – 240
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "41"
+key "41"
+
+\end_inset
+
+Williams, D.P.
+ Intel Serv Robotics (2012) 5: 33.
+ doi:10.1007/s11370-011-0102-y
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "42"
+key "42"
+
+\end_inset
+
+Tenorth, M., & Beetz, M.
+ (2013).
+ KnowRob: A knowledge processing infrastructure for cognition-enabled robots.
+ The International Journal of Robotics Research, 32(5), 566-590.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "43"
+key "43"
+
+\end_inset
+
+Bálint-Benczédi, F., Mania, P., & Beetz, M.
+ (2016, May).
+ Scaling perception towards autonomous object manipulation—in knowledge
+ lies the power.
+ In Robotics and Automation (ICRA), 2016 IEEE International Conference on
+ (pp.
+ 5774-5781).
+ IEEE.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "44"
+key "44"
+
+\end_inset
+
+Pangercic, D., Pitzer, B., Tenorth, M., & Beetz, M.
+ (2012, October).
+ Semantic object maps for robotic housework-representation, acquisition
+ and use.
+ In Intelligent Robots and Systems (IROS), 2012 IEEE/RSJ International Conferenc
+e on (pp.
+ 4644-4651).
+ IEEE.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "45"
+key "45"
+
+\end_inset
+
+Albiez, J., Joyeux, S., & Hildebrandt, M.
+ (2010, September).
+ Adaptive AUV mission management in under-informed situations.
+ In OCEANS 2010 (pp.
+ 1-10).
+ IEEE.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "46"
+key "46"
+
+\end_inset
+
+Fox, S.
+ E., Teichberg, M., Olsen, Y.
+ S., Heffner, L., & Valiela, I.
+ (2009).
+ Restructuring of benthic communities in eutrophic estuaries: lower abundance
+ of prey leads to trophic shifts from omnivory to grazing.
+ Marine Ecology Progress Series, 380, 43-57.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "47"
+key "47"
+
+\end_inset
+
+Costanza, R., d’Arge, R., De Groot, R., Farber, S., Grasso, M., Hannon, B., ...
+ & Raskin, R.
+ G.
+ (2016).
+ The Value of the World’s Ecosystem Services and Natural Capital (1997).
+ The Globalization and Environment Reader, 117.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "48"
+key "48"
+
+\end_inset
+
+Nogueras-Iso, J., Zarazaga-Soria, F.
+ J., & Muro-Medrano, P.
+ R.
+ (2005).
+ Geographic information metadata for spatial data infrastructures.
+ Resources, Interoperability and Information Retrieval.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "49"
+key "49"
+
+\end_inset
+
+Berners-Lee, T., Hendler, J., & Lassila, O.
+ (2001).
+ The semantic web.
+ Scientific american, 284(5), 28-37.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "50"
+key "50"
+
+\end_inset
+
+Raskin, R.
+ G., & Pan, M.
+ J.
+ (2005).
+ Knowledge representation in the semantic web for Earth and environmental
+ terminology (SWEET).
+ Computers & geosciences, 31(9), 1119-1125.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "51"
+key "51"
+
+\end_inset
+
+Tenorth, M., & Beetz, M.
+ (2009, October).
+ KnowRob—knowledge processing for autonomous personal robots.
+ In Intelligent Robots and Systems, 2009.
+ IROS 2009.
+ IEEE/RSJ International Conference on (pp.
+ 4261-4266).
+ IEEE.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "52"
+key "52"
+
+\end_inset
+
+
+\color black
+Srinivasan, V.
+ (2016, November).
+ Robot Control For Underwater Robotic Systems, Master's Thesis, Universität
+ Bremen
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "53"
+key "53"
+
+\end_inset
+
+Yoerger et al., 2007 D.R.
+ Yoerger, M.
+ Jakuba, A.M.
+ Bradley.
+ Techniques for deep sea near-bottom survey using an autonomous underwater
+ vehicle.
+ International Journal of Robotics Research, 26 (2007), pp.
+ 41–54
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "54"
+key "54"
+
+\end_inset
+
+Caress et al., 2012 D.W.
+ Caress, D.A.
+ Clague, J.B.
+ Paduan, J.F.
+ Martin, B.M.
+ Dreyer, W.W.
+ Chadwick Jr., A.
+ Denny, D.S.
+ Kelley.
+ Repeat bathymetric surveys at 1-metre resolution of lava flows erupted
+ at Axial Seamount in April 2011
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "55"
+key "55"
+
+\end_inset
+
+Wheeler et al., 2005 A.J.
+ Wheeler, B.J.
+ Bett, D.G.
+ Masson, D.
+ Mayor.
+ The impact of demersal trawling on North East Atlantic deepwater coral
+ habitats: the case of the Darwin Mounds, United Kingdom, in: P.W.
+ Barnes, J.P.
+ Thomas (Eds.), Benthic habitats and the effects of fishing, American Fisheries
+ Society Symposium, 41 (2005) Bethesda, (890 pp.)
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "56"
+key "56"
+
+\end_inset
+
+Ruhl et al., 2013 H.A.
+ Ruhl, et al.
+ RRS Discovery Cruise 377 & 378.
+ Autonomous ecological surveying of the abyss: understanding mesoscale spatial
+ heterogeneity at the Porcupine Abyssal Plain.
+ National Oceanography Centre Cruise Report No.
+ 23, Southampton, UK (2013) (73 pp.)
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "57"
+key "57"
+
+\end_inset
+
+Roelfsema, C.
+ M., Phinn, S.
+ R., Udy, N., & Maxwell, P.
+ (2009).
+ An integrated field and remote sensing approach for mapping seagrass cover,
+ Moreton Bay, Australia.
+ Journal of Spatial Science, 54(1), 45-62.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "58"
+key "58"
+
+\end_inset
+
+Creel, L.
+ (2003).
+ Ripple effects: population and coastal regions (pp.
+ 1-7).
+ Washington, DC: Population Reference Bureau.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "59"
+key "59"
+
+\end_inset
+
+Documentation to rosrun and rosbash package: http://wiki.ros.org/rosbash#rosrun
+ (last check: 03/14/17 3:38pm)
+\end_layout
+
+\end_body
+\end_document

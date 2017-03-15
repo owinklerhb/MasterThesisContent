@@ -1,0 +1,801 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+Traditional and Modern Mapping Methods
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Traditional-and-Modern-mapping-mathods"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Ontology based geological field mapping
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+The traditional way of field mapping contains a topographical paper map
+ with surrounding key objects as reference points.
+ While the mapping person identifies objects, the paper map is filled with
+ colors or patterns that represent rock types and contains information about
+ age, mineralogy, formation and other data of geoscientific interest.
+ This technique of classical field mapping is still object of mapping classes
+ in universities to train freshman to identify rocks by their appearance
+ and mineral setting.
+ The development of very accurate GPS modules in mobile devices and internet
+ based services such as Google Maps or OpenStreetMap, it is possible to
+ map digital and online at the same time, which provides a big benefit when
+ it comes to collaborative mapping.
+ This digital development lead to more improvement by building a database,
+ holding the found information in matter of spatial appearance and geoscientific
+ background information for individuals.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/olaf/Documents/thesis/Dokumente/Masters Thesis/Images/Field map Achmelvich 720x397.jpg
+	scale 57
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Example of a partly colored geological map of a mapping field exercise
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Example-of-a-partly-colored-map"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+The development of 
+\emph on
+FieldLOG
+\emph default
+, a software with database structure, brings an early approach of using
+ the collected data in an ontological way.
+ The software is in development since the 90's in Canada and the developers
+ have set some standards for a flexible database design for individual requireme
+nts and corporate mandates [Brodornic, 2004].
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align center
+
+\shape italic
+\begin_inset Quotes eld
+\end_inset
+
+Truth is not always objective, but may be a matter of opinion.
+\begin_inset Quotes erd
+\end_inset
+
+ - Burrough, 1992
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+This explains that a flexibility is required due to varying identifications
+ of different field scientists.
+ Software and database flexibility with predefined schematics, defined in
+ ontologies, bring a solution to such problems.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+As 
+\emph on
+FieldLOG
+\emph default
+ provides an ontological basis, it is easy to connect others to it or to
+ develop own ontologies to provide additional individuals and classes.
+ As ontologies are a construct of philosophical disciplines and are a very
+ old method to describe the surrounding, they are clearly a new field for
+ computer science.
+ Digital ontologies are developed since the 1990's and are written in an
+ own 
+\begin_inset Quotes eld
+\end_inset
+
+ontology web language
+\begin_inset Quotes erd
+\end_inset
+
+ (owl) as standard.
+ Many can be found over the internet and important ones are: SWEET ontology
+ build by NASA as 
+\begin_inset Quotes eld
+\end_inset
+
+Earth and Environmental Terminology
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "50"
+
+\end_inset
+
+ or KnowRob as knowledge for robotic systems to achieve more flexible and
+ general behavior and better performance 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "51"
+
+\end_inset
+
+ for such systems.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+Ontologies provide a standardized as well as flexible way to contribute
+ data to a field, that robots will become more and more important in the
+ near future.
+ This offers opportunities to interaction between human and robotic systems.
+ Automated systems for information extraction already exist.
+ They are able to extract the information to a small extend 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "18"
+
+\end_inset
+
+ such as rooftops of buildings, used to estimate the buildings area coverage.
+ Information like these are valuable for projects like OpenStreetMap which
+ represents a data source for outdoor robotic missions like in the SHERPA
+ project which is used for human-robot interaction while performing a rescue
+ mission in avalanche scenarios 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "19,20"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Semantic mapping
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Nugoeras-Iso 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "48"
+
+\end_inset
+
+ describes ontology approaches from the late 90's and shares Ideas of interopera
+bilities of systems like OBSERVER (1998) which provides an architecture
+ for queries to global information systems.
+ This system works with entities across ontologies and shares the approach
+ as a new concept.
+ Actually Berners-Lee 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "49"
+
+\end_inset
+
+ admits that 
+\begin_inset Quotes eld
+\end_inset
+
+the semantic Web is an extension of the current web in which information
+ is given well-defined meaning, better enabling computers and people to
+ work in cooperation
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Semantic mapping can be found in websites of the UK Office for Library
+ and information Networking, which uses a standard of 
+\begin_inset Quotes eld
+\end_inset
+
+crosswalk based semantic interoperability
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This is an example of developing mappings among different standards and
+ different domains that provides a wide flexibility.
+ The Project MADAME (Methods for Access to Data and meta data in Europe)
+ gives an example of geographic information meta data to this field.
+ The Digital Geographic Information Working Group offers crosswalks of ISO
+ 19115 and CSDGM - a connection of both standards.
+ Nogueras-Iso et al.
+ provide an overview to the crosswalk construction of these standards as
+ they follow certain rules:
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+Harmonization: Obtain a formal and harmonized specification of both standards
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+Semantic mapping: Mapping establishment between elements of the source standard
+ and the target standard - deep knowledge of both standards is required
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+Additional rules for meta data conversion: Solving problems related to different
+ levels of hierarchy, data conversions, etc.
+ - eliminating domain and structural conflicts
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+Mapping implementations: Obtain a completely automated crosswalk by means
+ of the application of some type of tools.
+ Searches can be provided according to different families and meta data
+ standards.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /media/olaf/TOSHIBA 1TB/Master Thesis/Images/semantic mapping.png
+	scale 22
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Schematic representation of crosswalks process steps between meta data standards
+ (source: 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "48"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+As semantics follow a Hierarchical and structural organization, also the
+ semantics of this work are build up in such a way.
+ But here, the elements are implemented into another ontology instead of
+ finding a crosswalk of two existing ones.
+ The semantics of the KnowRob ontology are extended by objects of interest.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+A complete overview of how the crosswalk is build up can be read in 
+\begin_inset Quotes eld
+\end_inset
+
+Geographic Information Metadata for Spatial Data Infrastructure
+\begin_inset Quotes erd
+\end_inset
+
+ (s.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "48"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection*
+Seagrass mapping
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+While geological mapping is done by special extraction, traditional seagrass
+ surveys are done by scientists on the computer with aerial images 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "57"
+
+\end_inset
+
+ or "in situ" by placing nets/squares over the seagrass, and taking photographs
+ to estimate the density of species and maybe the algae coverage on the
+ leafs.
+ McKenzie 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "11"
+
+\end_inset
+
+ provides a guideline with standards that are useful for scientist in the
+ field and give a possibility to identify species and provides an idea of
+ the appearance of the seagrass itself.
+ The mapping process can be an exhausting experience and needs several day
+ sometimes.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/olaf/Documents/thesis/Dokumente/Masters Thesis/Images/Thursday-Island-Seagrass-from-aerial-image-2011-550x358.jpg
+	scale 90
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Seagrass meadows on an aerial image
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Seagrass-meadows-on-an-aerial-image"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/olaf/Documents/thesis/Dokumente/Masters Thesis/Images/Bildschirmfoto 2016-12-07 um 21.41.54.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+A part of McKenzie's Guideline to seagrass coverage estimation (source:
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "11"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The in situ type of mapping provides a very detailed picture of the flora
+ and fauna but takes very long and is cost intensive since a group of scientists
+ need to dive into the meadows itself to take a look at the plants and to
+ shoot the pictures.
+ 
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/olaf/Documents/thesis/Dokumente/Masters Thesis/Images/Seagrass_Transect1.jpg
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Traditional in situ seagrass mapping by snorkeling
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Traditional-in-situ-seagrass-mapping"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The traditional mapping method faces similar problems to the mapping like
+ the modern systems.
+ The GPS module only works on the water surface and the mapping needs to
+ be done as close to the GPS positioning device as possible to minimize
+ the error which can be up to 3m depending on the depth in shallow waters
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "11"
+
+\end_inset
+
+.
+ The general field procedure is dependent on the tides of the area and is
+ normally done by walking or diving around the perimeter and a grid pattern
+ is placed where the seagrass occurs to take a georeferenced picture.
+ The collected data will show gaps because the grid will be placed 100 to
+ 1000 meters apart, depending on the size of the survey site 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "11"
+
+\end_inset
+
+.
+ Others see the benefits in coverage of large areas in short time (
+\color black
+
+\begin_inset Formula $200\nicefrac{m^{2}}{h}$
+\end_inset
+
+
+\color inherit
+ depending on depth) and allows operation in areas where boating is limited
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "13"
+
+\end_inset
+
+.
+ These limits are also not present if an automated scientist like the AUV
+ is taken for the task.
+ Truly it can not be set up in an environment of quickly changing tides
+ but other areas like the Baltic sea are a good point to start such a system.
+ Comparing traditional methods to the automates scientist, the data from
+ the robot does not have any big gaps because of continuous data allocation.
+ Many regards have been made over the past decades to develop a monitoring
+ and survey program to produce a cost-effective allocation of resources
+ to conserve seagrass ecosystems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "22"
+
+\end_inset
+
+.
+ There have been many attempts to reach that goal by examining areal images
+ and satellite images over times of 10 to 20 years to get an idea of the
+ trend the seagrass meadows are tending to.
+ 
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/olaf/Documents/thesis/Dokumente/Masters Thesis/Images/green island over the years.png
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Green island from 2011 to the present.
+ The aerial images are taken from Google Earth.
+ Only the images from 1/2015 and 09/2015 are reliable sources for traditional
+ seagrass mapping.
+ The others are useless due to cloud coverage and sun reflections on the
+ water surface.
+ An automated system, working only on these images, would have big problems
+ using them to identify the seagrass.
+ (images source: Google Earth (2017))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+\begin_inset CommandInset include
+LatexCommand input
+filename "../../Texts/zweiter ansatz/first part/kirkman.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,441 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Logging Based on Belief State 
+\size footnotesize
+(semrec)
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Logging-Based-on-SEMREC"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Semrec 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "32"
+
+\end_inset
+
+ is used to record the robots experience as it detects an object.
+ Depending on the object, different belief states are triggered.
+ As the robot receives the 
+\begin_inset Quotes eld
+\end_inset
+
+_string
+\begin_inset Quotes erd
+\end_inset
+
+ message from Algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Image_string_algorithm"
+
+\end_inset
+
+, one of the different callback functions within the semrec client is triggered:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "numbers=left,basicstyle={\scriptsize\ttfamily},breaklines=true,showstringspaces=false,tabsize=2,language={c++},backgroundcolor={\color[rgb]{0.95,0.95,0.95}},stringstyle={\color[rgb]{0.06, 0.10, 0.98}},keywordstyle={\color[rgb]{0.37, 0.08, 0.25}\bfseries},commentstyle={\color[rgb]{0.12, 0.38, 0.18 }\itshape},frame=lrbt,xleftmargin=15pt,emph={[1]{php}},emphstyle={[1]\color{black}},emph={[2]{if,and,or,else}},emphstyle={[2]\color[rgb]{0.74,0.74,.29}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+\noindent
+
+void stringCallback_green(const sensor_msgs::Image::ConstPtr& msg)
+\end_layout
+
+\begin_layout Plain Layout
+
+ {
+\end_layout
+
+\begin_layout Plain Layout
+
+  BeliefstateClient* bscl_green = new BeliefstateClient("bs_client_plants");
+\end_layout
+
+\begin_layout Plain Layout
+
+   bscl_green->setMetaDataField("Survey", "UWSim_Object_Recognition");
+\end_layout
+
+\begin_layout Plain Layout
+
+   Context* ctxMain_green = new Context(bscl_green, "Seagrass", "&uwsim;",
+ "Seagrass", 0);
+\end_layout
+
+\begin_layout Plain Layout
+
+   Object* objSeagrass = new Object("&uwsim;", "Seagrass");
+\end_layout
+
+\begin_layout Plain Layout
+
+   Context* ctxSeagrassInView;
+\end_layout
+
+\begin_layout Plain Layout
+
+   ctxSeagrassInView = ctxMain_green->startContext("SeagrassInView");
+\end_layout
+
+\begin_layout Plain Layout
+
+   cout<<"Logging Seagrass"<<endl;
+\end_layout
+
+\begin_layout Plain Layout
+
+   ctxSeagrassInView->addObject(objSeagrass, "Seagrass");
+\end_layout
+
+\begin_layout Plain Layout
+
+   ctxSeagrassInView->end();
+\end_layout
+
+\begin_layout Plain Layout
+
+   ctxMain_green->end();
+\end_layout
+
+\begin_layout Plain Layout
+
+   bscl_green->exportFiles("UWSim_Object_Recognition");
+\end_layout
+
+\begin_layout Plain Layout
+
+   cout<<"Writing Seagrass knowledge to file"<<endl;
+\end_layout
+
+\begin_layout Plain Layout
+
+   delete objSeagrass; 	
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Callback function for the logging of seagrass.
+ This is done for all different object types within the scenes
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Callback-function-for-semrec"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The code above starts a 
+\begin_inset Quotes eld
+\end_inset
+
+Context
+\begin_inset Quotes erd
+\end_inset
+
+ which indicates the logging of seagrass when the plants object is in the
+ view of the robot.
+ It creates an object that is stored into a Mongo database (MongoDB) provided
+ by the semrec server, running in the background.
+ This data base is later used to connect the experienced logging (object
+ recognition) with the knowledge from the ontology.
+ As all steps in the system are logged with a specific time stamp, all informati
+on that are available for this specific time point can be viewed afterwards.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In the remainder of this section, the procedere of how to start and work
+ with the logging system will be shown in detail.
+ First the Server of Semrec needs to be started:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\scriptsize\ttfamily},breaklines=true,showstringspaces=false,tabsize=2,language={c++},backgroundcolor={\color[rgb]{0.95,0.95,0.95}},stringstyle={\color[rgb]{0.06, 0.10, 0.98}},keywordstyle={\color[rgb]{0.37, 0.08, 0.25}\bfseries},commentstyle={\color[rgb]{0.12, 0.38, 0.18 }\itshape},frame=lrbt,xleftmargin=15pt,numbers=left,emph={[1]{php}},emphstyle={[1]\color{black}},emph={[2]{if,and,or,else}},emphstyle={[2]\color[rgb]{0.74,0.74,.29}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+\noindent
+
+rosrun semrec semrec
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+and it needs to give the user the feedback that he can start to use the
+ system:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/semrec started_cropped.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+After the semrec server started, the system reports a complete initialization,
+ that it can be used
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The logging process is started by using the command of:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\scriptsize\ttfamily},breaklines=true,showstringspaces=false,tabsize=2,language={c++},backgroundcolor={\color[rgb]{0.95,0.95,0.95}},stringstyle={\color[rgb]{0.06, 0.10, 0.98}},keywordstyle={\color[rgb]{0.37, 0.08, 0.25}\bfseries},commentstyle={\color[rgb]{0.12, 0.38, 0.18 }\itshape},frame=lrbt,xleftmargin=15pt,numbers=left,emph={[1]{php}},emphstyle={[1]\color{black}},emph={[2]{if,and,or,else}},emphstyle={[2]\color[rgb]{0.74,0.74,.29}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+\noindent
+
+rosrun semrec_client uwsim_logger
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+As the detection of the objects is running, it is directly connected to
+ the logger:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/semrec client running_loggin_and_detection_output_white.png
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The detection algorithm is triggering the logger to write knowledge into
+ the data base (cf.
+ Alg.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Callback-function-for-semrec"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Image_string_algorithm"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

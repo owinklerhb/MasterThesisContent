@@ -1,0 +1,518 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Sequences 1.1 to 1.4 - Unaffected
+\end_layout
+
+\begin_layout Subsubsection*
+\noindent
+1
+\begin_inset Formula $^{st}$
+\end_inset
+
+ sequence of Scene 1
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The undisturbed scenario starts with a beginning of a growth and sets the
+ first appearance of the meadows.
+ As the growing continues, the meadows become more visible and bigger.
+ They also develop borders so the robot is able to differentiate between
+ the plants and the background.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/olaf/Documents/thesis/Desktop/Thesis LaTeX/own/Images/scenario1.png
+	scale 58
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Scenario 1 indicates an undisturbed environment with normal growth.
+ From slight coverage in 1.1 up to total coverage in 1.4.
+ The first picture indicates winter times with high growth and first visible
+ borders.
+ A very slight increase of plants in the second picture indicates spring
+ time with a growth rate not as high as in winter times.
+ The third picture shows a very large coverage of the seafloor which isn't
+ visible in the meadows anymore.
+ This is caused by the high growth rates in summer times.
+ The full coverage but a very slight increase can be seen in the fourth
+ picture which represents autumn.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+The occurring spots of seagrass and seafloor are taken from the satellite
+ images and are reproduced in Blender and QGIS to investigate it with the
+ robot in the simulation.
+ It can also be used as a reference to check if the algorithm is working
+ properly.
+ To make the area more interesting and to test the algorithm's detection
+ function, some additional objects are added.
+ As animals some Starfish and crabs are present with different colors so
+ OpenCV can differentiate between the organism species.
+ There are also rocks of different size, color and deposits.
+ They are all typically rounded since they are lying in the ocean and represent
+ different reflectance due to different colors of brighter and darker appearance.
+ This is another indicator that an optical sensor can use to observe differences.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+The spread of the plants are encountered with Blender values of the particles
+ systems emission of:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Scene
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hair Length
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.45
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+800
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1300
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1400
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The table contains the values for Blender to produce the grown Seagrass.
+ The first step in this scenario represents the first bloom of the meadows
+ and continues over the next steps
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+2
+\begin_inset Formula $^{nd}$
+\end_inset
+
+ sequence of Scene 1
+\end_layout
+
+\begin_layout Standard
+\noindent
+The second scene is the same as the first scene but with increased growth
+ of the seagrass in a healthy way.
+ A single plant leaf of seagrass can grow up to 100cm and I want to see
+ the maximum of the growth in a healthy way after one time period without
+ any disturbance and let the robot take a closer look and compare it to
+ the first scenario.
+\end_layout
+
+\begin_layout Subsubsection*
+3
+\begin_inset Formula $^{rd}$
+\end_inset
+
+ sequence of Scene 1
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The third scene represents a winter state for the seagrass since it has
+ its growth maximum in spring and autumn but its minimum in winter and summer.
+ So in winter times the stress for the plants is much higher and it shows
+ some decreased growth rate 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "5"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename /home/olaf/Documents/thesis/Desktop/Thesis LaTeX/own/Images/stranding_crops.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Congdon and McComb found the leafs growing increased in winter times and
+ saw a low appearance in autumn to winter with a rapid increase in spring
+ to summer (source: 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "5"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+In QGIS it is possible to visualize the different growth rates and number
+ them in a scientific way.
+\end_layout
+
+\begin_layout Subsubsection*
+4
+\begin_inset Formula $^{th}$
+\end_inset
+
+ sequence of Scene1
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+The last scene represents the autumn state in which the growth is reduced
+ but almost completed for the year just before cease blooming.
+ The spread reaches the maximum and represents the actual state that can
+ be found in aerial images from Google Earth or other satellite image sources.
+ The robot is able to see all plants and shows the complete coverage of
+ the area but some objects like rocks and crabs are covered too much with
+ plants so the threshold of 0.28% doesn't get into use here so the robot
+ ignores the object.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+This scenario is used as a reference to identify the differences between
+ the undisturbed area with influenced areas.
+\end_layout
+
+\end_body
+\end_document

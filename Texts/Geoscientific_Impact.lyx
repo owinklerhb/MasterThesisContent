@@ -1,0 +1,210 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+Geoscientific Impact
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+With the given reasons, this is a chance for the geoscience to add another
+ method to tasks of exploration and observation.
+ By using robot knowledge, it is possible to generate a live detailed data
+ set which can be made even more precise by a scientist who is evaluating
+ this data by looking at pictures that are taken from the system when it
+ comes to object detection.
+ As AUVs are already in use in geoscientific missions, this approach widens
+ the abilities to such systems.
+ It enables primal autonomous data evaluation of in the area of interest.
+ The gained data from this first set shows possibilities that the actual
+ algorithm, that is present right now, can improve the methods of geo technologi
+es.
+ Robots already drive autonomously but the detection approach can be used
+ in many fields to help scientists to calculate environment conditions.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/scene_preview10.png
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+As the robot finnished scanning the environment, the recorded data is stored
+ in different files and can be used to produce paper maps as well as resulting
+ statistics.
+ A scientist can also access the herarchically recorded data in a web interface,
+ providing the background data base with knowledge and episodic memory
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:geoscientific_impact"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Additionally to the traditional methods, comes the fact that this work provides
+ a way to integrate methods from the artificial intelligence (AI) to access
+ knowledge about the environment, the mission takes place in.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Because not every discipline is interest in a set of seagrass detection
+ or topics of this kind, the approach is is highly variable.
+ Limits that are set for the image threshold are providing levels in which
+ objects are detected or ignored.
+ This creates another possibility to change the approach to ones needs,
+ as different systems may come with hardware of different optical noise
+ behavior.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+This work is focusing on the AUVs optical sensor and recognizes different
+ colors.
+ By taking a chemical sensor, this approach can be used to recognize chemical
+ changes in the water column to record the occurrence of specific chemical
+ compounds.
+ Both sensors combined can provide an even more detailed picture to record
+ occurring bacteria mats for example.
+ The autonomous control of the robot is triggered by the systems positioning
+ sensor so the change in direction is triggered via GPS.
+ Other projects i.e.
+ for underwater ice surface investigation may use a timed change in directions
+ since the GPS signal becomes weaker in depth or under thick layers of ice.
+ On the other hand it may be useful to surface the vehicle from time to
+ time to refresh the geo position.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Due to a predefined path, it would be another chance to take the optical
+ part to scan underwater ice shields for anomalies.
+ The only limit is the mentioned missing GPS signal that could be defined
+ by a signal that may come from another source.
+ Since the incoming signal just has to be set to the GPS topic of the robot,
+ it may be another future work to simulate such conditions with GPS stations
+ or fixed orientations points.
+\end_layout
+
+\end_body
+\end_document

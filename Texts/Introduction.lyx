@@ -1,0 +1,188 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 3cm
+\rightmargin 4cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\noindent
+
+\color black
+Introduction
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\color black
+\begin_inset Quotes eld
+\end_inset
+
+
+\shape italic
+No matter how far from the shore that you live, oceans still affect your
+ life and the lives of your families and friends, classmates and colleagues.
+ The air that you breathe, the water you drink, the food you eat, the products
+ that keep you warm, safe, informed, and entertained — all can come from
+ or be transported by the ocean.
+\shape default
+
+\begin_inset Quotes erd
+\end_inset
+
+ - 
+\shape italic
+\size small
+Protect Planet Ocean (2016)
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+
+\color black
+By keeping this statement above in mind, it is necessary to take a look
+ at how to protect one of the most valuable environments of planet earth.
+ One option is to use modern technology like robots to collect data in environme
+nt monitoring missions to determine possible hazards.
+ Robots of this kind already exist and many marine disciplines are using
+ AUVs but for other reasons than monitoring.
+ Robots like AUVs are commonly used in geoscientific missions mostly for
+ profiling or filming the seafloor 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "16"
+
+\end_inset
+
+ to take a video stream for the exploration of resources like poly metallic
+ nodules and seafloor massive sulfides 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "17"
+
+\end_inset
+
+.
+ Many institutes like MARUM, DFKI, Jacobs University and some private institutes
+ are working on automated systems for these underwater tasks and their simulatio
+n.
+ This thesis is working on an own way of interaction between an AUV and
+ the environment.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+
+\color black
+The investigation of the seafloor and its habitats is mainly done by expensive
+ explorations and will mostly be executed via ships.
+ This means a lot of costs for universities and labor for the ships crew.
+ The most expensive explorations take place in areas that can be hazardous
+ for human beings and need a special trained crew.
+ For keeping the risk at a low level, the dangerous areas are observed by
+ Remotely Operated Vehicles (ROV) or Autonomous Underwater Vehicles (AUV).
+ As useful as these systems are, they rarely can be found in less dangerous
+ areas like shallow marine environments due to high costs but some projects
+ tried to take first steps into that field because of their economic value.
+ The shallow environments need to be observed because of different ecological
+ reasons.
+ The "Project Seagrass" provides first information about occurrence of seagrass
+ in a scientific meaning which occurs in the area of green island near the
+ Australian coast as well as near the coasts of Great Britain but in this
+ work the area of Australia is of interest.
+ Habitat monitoring is a field of growing interest but also stress analysis
+ becomes more and more important also to the industries.
+ This work will focus on combining the disciplines of marine geoscientific
+ technologies of AUVs with the methods of artificial intelligence.
+ The main point is to create an approach to improve the existing geoscientific
+ methods of habitat monitoring by simulating an AUV that is able to scan
+ an environment with optical sensors and to record the gained data in geoscienti
+fic manner as well as in terms of artificial intelligence.
+ While performing the mission, the entities given in teh environment are
+ detected and stored in a hierarchically structure of semantic meaning.
+ This enables to process the knowledge on the episodic memory (remembrance
+ of a specific moment) of the robot to reason and understand its behavior.
+ This makes it possible to reason for the robots findings and comprehend
+ the robots behavior by extracting knowledge for humans.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,324 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+Alternative Scenarios
+\end_layout
+
+\begin_layout Standard
+The approach of this work is not fixed to seagrass.
+ It is possible to manage different scenarios and different sensors.
+ As a user is able to add new sensors to the simulator (s.
+ UWSim Wiki), the surface can be anything.
+ The Robot can dive through chemical clouds or scan temperature - there
+ is no limit for these sensoric missions.
+ This approach manages to log the gained data and store it in a format to
+ visualize it a Geo Information System and record it for Open-EASE.
+ Therefore one can run a desired mission visualize it on a map or even in
+ a 3D environment.
+\end_layout
+
+\begin_layout Standard
+\noindent
+One possible scenario is to use a changing underground as can be found near
+ coastlines.
+ Most of the concrete undergrounds are used for coastal protection as they
+ are lodging the coast.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /media/olaf/TOSHIBA 1TB/Master Thesis/Images/seabees-ENVIRONMENT-AGENC_600.jpg
+	scale 47
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename /media/olaf/TOSHIBA 1TB/Master Thesis/Results/Renders/2.png
+	scale 17.65
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Left
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Left:-Real-world"
+
+\end_inset
+
+: 
+\shape italic
+\size small
+Real world scene of coastal protection - For coastal protection, a structure
+ of concrete cement is built and covers parts of the seafloor or beach site.
+ This can also be found at steeper coasts, not only at flat beach sites.
+ Right:Remake in Blender of the same scene as an alternative scenario
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Coastal protection has a very important meaning not only to the people living
+ there but also for industries.
+ Ports, farmland and touristic industries are located near the coast.
+ As the population is growing and 
+\begin_inset Quotes eld
+\end_inset
+
+approximately 3 billion people — about half of the world’s population —
+ live within 200 kilometers of a coast- line
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "58"
+
+\end_inset
+
+ it is needed to intensify the focus on coastal protection.
+ The interaction between global warming and a sea level rise are underlining
+ the need.
+ As some countries like the Netherlands have 1/4 landmasses below the sea
+ level the need of coastal protection is of high interest.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+One option is to let the robot scan a protection site by optics to check
+ the upsanding of the material and monitor it by comparing the latest survey
+ with older ones.
+ Second option would be to check for chemicals.
+ As coastal protection is not only meant to concrete the coast but also
+ to check for possible slides.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Example: 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+A sandy, steep coast or shelf is build up from sandy material.
+ Sand in small grain size of down to 
+\begin_inset Formula $0.0025-0.0049in$
+\end_inset
+
+ (
+\begin_inset Formula $62.5-125\text{µm}$
+\end_inset
+
+) is a very fine sand (mud, silt and clay is even finer).
+ The sand particles are packed and perfectly aligned and the inter space
+ allows only freshwater to pass trough.
+ Permeability of such a system allows the water particles to diffuse but
+ as salty particles are too big, they stay out.
+ This brings a grade of salinity in front of the sand barrier.
+ If the sandy material experiences a movement in pressure shift within the
+ constructed system, the salinity gradient in front would fall due to freshwater
+ inflow from the sandy system.
+ A stationary monitoring system could permanently check the salinity in
+ front of the sand barrier while an AUV drives by every now and then to
+ check the whole site for optical changes and chemical differences as well
+ as also salinity for reference reasons.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/3.png
+	scale 22.5
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Brown balls represent aligned sand particles while blue balls are water
+ particles.
+ White polygons are salty particles that can not diffuse through the sand
+ barrier due to their size
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/4.png
+	scale 63
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+A possible situation of the robot checking the sandy slope and the salinity
+ measurement station attached to the slope
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

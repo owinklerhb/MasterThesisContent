@@ -1,0 +1,243 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Ontology and Semantics 
+\size footnotesize
+(Knowledge base)
+\end_layout
+
+\begin_layout Standard
+\noindent
+The semantic matter can be found in almost every kind of map that includes
+ objects and their information.
+ But what is semantics?
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\align center
+
+\shape italic
+"Semantics is primarily the linguistic, and also philosophical study of
+ meaning - in language, programming languages, formal logics, and semiotics.
+ It focuses on the relation between signifies - like words, phrases, signs
+ and symbols - and what they stand for, their denotation" (Wikipedia: Semantics).
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+With this in mind, a map contains a lot of symbols, colors and annotations.
+ This gives a semantic feedback of objects in the area the map describes.
+ It is possible to create a digital map in a semantic way with an ontology
+ in the background that allows to ask for objects and their relations in
+ a 3 dimensional environment.
+ This work is focused on creating a map with POI (points of interest) and
+ AOI (areas of interest) that reflect a specific object like a rock, a crab
+ or simply a part of a seagrass meadow.
+ The map contains in the end an overview of the extension of seagrass and
+ the appearance of animals and non living material.
+ By using a semantic map it is possible to ask for the information that
+ are recognized by the robot which is producing the maps contents.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/Thesis_ontology_background.png
+	scale 13.2
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+This orthogonal structure of the ontology shows how the objects in the map
+ are defined in the knowledge base.
+ Yellow represents the original robotics ontology (KnowRob) and blue represents
+ the added information for this work.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Learning means that the information must be stored somewhere like in a written
+ way or at least the information needs to be communicated by someone.
+ The semantics in the background provide a knowledge base that the robot
+ can work with and contain the needed information to identify and point
+ to recognized objects.
+ Approaches in meaning of geo spatial data can be seen in chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Resulting-Maps"
+
+\end_inset
+
+.
+ While performing the mission, the robot is recognizing objects or at least
+ colors that appear in the vision of the robot.
+ As a specific color appears, the semantic meaning of it gets triggered
+ and the robot records the object.
+ This recording is stored in a database in the background which can later
+ be accessed by Open-EASE to visualize it in the semantic map.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Float figure
+wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/overview.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+As the robot recognizes an object, semrec gets triggered to write the knowledge
+ into the data base as well as the algorithm is writing the values into
+ the CSV file.
+ From these data sets, traditional as well as semantic maps are generated.
+ These can also be read by Open-EASE.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

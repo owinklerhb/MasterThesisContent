@@ -1,0 +1,135 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\paragraph_spacing onehalf
+\noindent
+Acknowledgments
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+I want to thank my family and all my friends who helped me during the time
+ of this work.
+ Especialy I want to thank my loving wife Anna who whitstand with me during
+ this time.
+ Thank you for being such a great support and the light of my life.
+ Also I want to thank my Parents who always gave me feedback whenever I
+ needed it and helped in every possible way.
+ I really appreciate all the hopes that also my parents in law set in me
+ and I am thankful for all their wishes.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+A very big thanks goes to my mentor Fereshta Yazdani, who was always able
+ to take care of the many problems I had during this time and the many questions
+ I came up with.
+ ROS, Open-EASE, programming - No matter how big the problem was, Fereshta
+ was always able to help me.
+ Thank you Fereshta for beeing such a great mentor.
+ Another thanks goes to my brother Jan Winkler, who helped me with the understan
+ding of OpenCV and semantic recording as well as to get an access to ROS.
+ Also a big help for me was the staff of the Institute for Artificial Intelligen
+ce of Daniel Beßler and Asil Kaan Bozcuoglu, who helped me whenever I had
+ questions regarding Open-EASE and ROS.
+ Thank you Jan-Hendrik Worch, for being a big help in the OpenCV Part.
+ I also appreciate the help of Venkatachalam 
+\color black
+Srinivasan with the automated control of the robot and for becoming a good
+ friend in this time.
+ Speaking of friends, I also want to thank Sebastian Koralewski and Mark
+ Niehaus for always providing thought-provoking impulses.
+ Also very important to mention are Axel Welter, Marco Tack, Julia Gallas,
+ Avrinder Babu Sandhu and Awais Saeed, who are always a very good company
+ for me and always come up with many brilliant ideas.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+I appreciate the support of all of you and can not thank you enough for
+ being such a great support.
+ Thank you all for making this possible.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,297 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+\noindent
+Data Extraction 
+\size footnotesize
+(Geoscientific)
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Data-Extraction-(Geoscientific)"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+As the traditional seagrass mapping is using aerial images, this work is
+ using them to recreate the environment, since its impossible for me to
+ perform a real world mission.
+ As the chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Traditional-and-Modern-mapping-mathods"
+
+\end_inset
+
+ is showing, not all satellite images are suitable for completing this task.
+ Cloud coverage and the reflecting sun as well as low contrast are limits
+ to identify the seagrass meadows.
+ QGIS is used to create polygons that cover the seagrass and are exported
+ to recreate the environment.
+ This is done with the valuable plugin support of QGIS.
+ One of the most useful plugins is 
+\begin_inset Quotes eld
+\end_inset
+
+OpenLayers Plugin
+\begin_inset Quotes erd
+\end_inset
+
+ which enables to load satellite images directly from a server into the
+ mapping canvas and prepare data for the environment simulation.
+ By downloading the satellite images and marking the seagrass borders, polygon
+ shapes are created that represent the full spread of the plants.
+ Another very useful Plugin is 
+\begin_inset Quotes eld
+\end_inset
+
+Qgis2Threejs
+\begin_inset Quotes erd
+\end_inset
+
+, which produces a polygon mesh file from the marked area that is used further
+ more in Blender to replace the polygons with spread plant meshes (cf.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:reproducing_plant_spread"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/QGIS_seagrass_marked.png
+	scale 28
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Marked Seagrass meadows from the satellite image which is downloaded by
+ the OpenLayers Plugin from the Google Maps Server.
+ The polygon represents the border that will be extruded to a 3D mesh file.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Marked-Seagrass-meadows"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+With the Qgis2Threejs plugin the polygon, that is covering the seagrass
+ areas, is exported as a 3D object.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Marked-Seagrass-meadows"
+
+\end_inset
+
+ represents a map canvas of the seagrass area near Green Island, Australia.
+ Furthermore, the seagrass is marked with a line tool (red line in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Exported-data-of-GIS"
+
+\end_inset
+
+) to indicate the simulator limits.
+ The polygon is extruded to a given height as a 3D object and extracted
+ in .OBJ or .DAE file format so it can be loaded into Blender.
+ The 3D object is used to determine the spread of seagrass meshes with a
+ "weight" tool (heavy weight for more spread) while recreating the environment.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+For keeping the project as close to the methods of the robotics as possible,
+ .OBJ format is chosen.
+ The file is imported into Blender to to keep working on it for the simulation
+ 
+\shape italic
+\size small
+\color black
+(As the AI methods are capable of also reading .DAE files, the tool can also
+ be used to directly provide data for Open-EASE)
+\shape default
+\size default
+\color inherit
+.
+ The output creates also a web browser based preview page so its possible
+ to check the exported objects and their position on the ground plate (canvas).
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Bildschirmfoto 2016-09-16 um 12.29.13.png
+	scale 32
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Exported data of the working area that is represented in 3D.
+ (Extruded) Polygons represent the appearance of seagrass.
+ Color, height and transparency can be set manually or by a value within
+ the data source
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Exported-data-of-GIS"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

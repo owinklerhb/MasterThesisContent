@@ -1,0 +1,1160 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Modeling a Geoscientific Environment 
+\size footnotesize
+(Geoscientific)
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+To recreate the environment of the satellite image, the mesh of the Qgis2Threejs
+ Plugin is loaded into Blender.
+ By importing the collada file (.DAE), the mesh is loaded into Blenders working
+ area.
+ It represents a 3D room with different tools and working modi.
+ To prepare the plant spread inside of Blender, the imported mesh needs
+ to be placed onto a plain mesh (2D plain).
+ It needs to be subdivided several times due to vertex painting on the surface.
+ As the simulation shouldn't be very resource consuming, the subdivision
+ of the plain has to find a good comparison between realism and resource
+ consumption of the simulator.
+ The more complex the mesh becomes, the more resource consuming the scenery
+ will be in the simulation.
+ Somewhat between 50 and 150 is a good compromise, depending on the simulating
+ machine.
+ By setting Blender from 
+\begin_inset Quotes eld
+\end_inset
+
+Blender units
+\begin_inset Quotes erd
+\end_inset
+
+ to a 
+\begin_inset Quotes eld
+\end_inset
+
+metric
+\begin_inset Quotes erd
+\end_inset
+
+ system it is possible to use the same size as found in QGIS since the reference
+ system is also using meters as a unit.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+The imported mesh is positioned onto the plain mesh by moving it up and
+ down on Z-Axis by grabbing the blue arrow indicator.
+ The subdivided plain is now put into weight paint mode and the areas of
+ the seagrass polygon is repainted as weight.
+ Blue color indicates light weight while red color indicates heavier weight.
+ green and yellow represent intermediate weight in between.
+ this results in an area that a particle system is using to place plant
+ meshes at a density with respect to the weight that was painted before.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/Blender_gis_import.png
+	scale 19
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 0.2cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Blender_weight_paint.png
+	scale 19
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 0.2cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Blender_particle_system.png
+	scale 19
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The images from left to the right show the imported mesh from QGIS that
+ is indicating the seagrass meadows.
+ The second image is showing the weight paint result that is used to indicate
+ the spread and density of the seagrass.
+ The third image shows the result with seagrass within the borders of the
+ meadow.
+ The green walls are removed afterwards
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:reproducing_plant_spread"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+the whole environment is made this way and all scenarios have different
+ weight profiles.
+\end_layout
+
+\begin_layout Subsubsection*
+Modeling the seagrass plant
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The seagrass mesh is held as simple as possible with the idea of 
+\begin_inset Quotes eld
+\end_inset
+
+the less the better
+\begin_inset Quotes erd
+\end_inset
+
+ in terms of verticies.
+ The model doesn't need to be as realistic as the seafloor or the rocks
+ as they appear in a big amount.
+ The meadows are produced with a particle system so there will be ~1000
+ individuals with vertices.
+ This means that there are 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $1000\,Individuals\,\times\,45\,Vertices\ =\ 45.000\,Vertices$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+that need to be presented in UWSim as well as in Open-EASE.
+ This needs a lot of machine power but makes sure that the robot has a realistic
+ simulated environment.
+ The simulation would run much faster with sprites (single planes that hold
+ an image file) but would falsify the results as the plane doesn't contain
+ any depth information that the robot can notice from above.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The plant itself is a model as simple as possible to prevent high resource
+ consumption during simulation.
+ It would be possible to just use one very simple mesh per meadow but that
+ would make the object recognition too easy and wouldn't represent a simulation
+ as realistic as possible in this simulator.
+ The Mesh is build up with a plane that is subdivided in 4 sections, divided
+ into a left and right part.
+ That makes eight faces per leaf and 24 faces per plant.
+ The sections are bent on one axis so it represents a leaf that is partly
+ bent by gravity.
+ The mesh is copied two times to build a whole plant.
+ After the plant is finished, the meshes need to be grouped so they all
+ can be used when the vertex group is referring to them as individuals.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/Seagrass plant in Blender.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/seagrass plant in blender mesh.png
+	scale 34
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Meshes of the Seagrass plants that are used in the simulation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The Seagrass mesh is inspired by pictures that can be found all over the
+ internet like at seagrasswatch.org or from the BBC.
+ The structure is very diverse so I had to decide between several and chose
+ the one that looked familiar to me.
+ The sprout normally comes from the rhizome but as the robot doesn't need
+ to see that it was not necessary to build the mesh that realistic.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/seagrass_parts.jpg
+	scale 60
+
+\end_inset
+
+
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/_87434626_c0053905-eel_grass_zostera_marina_-spl.jpg
+	scale 63
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The sketch shows that the leafs mostly come from the rhizome and the shapes
+ differ a lot.
+ The lower image shows that the leafs stick out of the sediment in groups
+ and show a small amount of stem and sheath.
+ This can be ignored as long as the leafs look almost like in the images
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:types-of.seagrass-images"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Modeling the rocks
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+To model the rocks, it is necessary to start with either a spherical or
+ a cubic mesh.
+ Since the simulation takes place in marine environment, the rock will be
+ roundish due to water column movement and influencing forces like currents
+ and mechanical and chemical weathering by sand, water and other objects.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/rounded.png
+	scale 50
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/not_rounded.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Rounded rocks of a marine environment on the left and not rounded material
+ from the field on the right.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Rounded-rocks-of"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The modeling of the rock is done by using the sculpture mode in Blender
+ and deforming a sphere.
+ As the deforming process needs to be done with a fine meshed object, it
+ produces many 
+\begin_inset Quotes eld
+\end_inset
+
+faces
+\begin_inset Quotes erd
+\end_inset
+
+ (planes to create the object) and this results in a big file size.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+To discriminate both rocks, textures of blue and yellow color were taken.
+ Both are free textures from the internet that are free to use and are manipulat
+ed in GIMP.
+ Both are identified as rocks but with different attributes in the background
+ knowledge.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/Bildschirmfoto 2016-12-07 um 14.03.11.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The rocks are made from a sphere that is subdivided and sculptured.
+ To reduce file size it is reduced with a modifier and finally textured
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The textures indicate many information, i.e.
+ the color which enables the robots and semantic detection.
+ By identifying these and give a link to the database, the rock can be asked
+ for in Open-EASE.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/yellow_texture.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/blue_texture.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The left texture shows the yellow rock that represents a link to the entries
+ to the database that contain meanings to this kind of rock.
+ The right texture does the same but links to entries of blue rocks.
+ Both represent a semantic link to the database
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Modeling the seafloor
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The seafloor is not that important for the detection algorithm but to be
+ more realistic on the geoscientific side, it is modeled and many details
+ are taken serious.
+ Ripple structures often occur in shallow marine environments that contain
+ tides and currents.
+ The ripples can also be found in lakes with a sand floor and at beaches
+ near the coast.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/ripple structure foto.png
+	scale 17
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Ripple structures on a beach of Borkum, Germany.
+ These indicate a current that has stacked the sand grains
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Ripple-structures-on-borkum"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+In Blender the ripple structures are made with a displacement map that is
+ used like a normal height map.
+ The combination of the Texture with the displacement map results in a scaleable
+ seafloor face that theoretically can also be scanned via laser scan which
+ is also included into the simulator framework.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The ripple structure represent a small grain size which is easier to deposit
+ by weak currents.
+ The smaller the grain size, the likelier is the deposition in terms of
+ ripple structures.
+ The requirement is a force (current) that moves the particles.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+To distinguish between grain sizes, it is possible to identify the ripple
+ structures and suggest the grains by ripple formation of:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\shape italic
+Normal structure
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\shape italic
+coastal structure
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+no transport
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+no transport
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+faint planar lamination due to poorly sorted sediment
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ripples
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+dunes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+upper planar lamination
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+upper planar lamination
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+antidunes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+antidunes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The normal structure can take place in non-marine environments as well but
+ in modern environments the coastal structure is more likely (cf.
+ Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Ripple-structures-on-borkum"
+
+\end_inset
+
+).
+ Different grain sizes need different forces to be moved so the deposition
+ inference grain sizes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/seafloor ripple structure_displacement_map.png
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The texture for the seafloor and the calculated height map/displacement
+ map for the texture
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seafloor_diff_disp_map_texture"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The setting of the seagrass appearance is taken via satellite image from
+ Google Maps in QGIS and is imported as a rough mesh to Blender.
+ The result is a rebuilding of the actual site to use it in the simulator.
+ As said before - the simulator is used to simulate the robot, interacting
+ with the environment.
+ Its not meant to observe just in the simulator but as a representative
+ it is good to keep it as close to the real world as possible.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The ripple structure of the seafloor is generated with a displacement map
+ and the displacement modifier in Blender.
+ The software „CrazyBump“ is able to calculate normal maps as well as displaceme
+nt maps from a single diffuse texture by generating high quality height-maps
+ from the darker and lighter parts of the texture itself.
+ The result is a direct copy of the texture of the seafloor in black and
+ white that can be used to generate heights and depths on the mapped texture.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/crazybump.jpg
+	scale 44
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+CrazyBump is a free software to produce Height-map like images that are
+ used to influence light behavior on surface textures or displace a mesh.
+ In this work CrazyBump is used to produce the seafloor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+As the Displacement map is produced, the mesh inside blender needs to be
+ subdivided several times.
+ Blender will interpret the lighter areas as high and the darker areas as
+ low profile (default setting) but this can also be manipulated in several
+ ways.
+ Here, I have used just a few mm in hight to produce a seafloor.
+ To give an idea to the color displacement I have produced a map from a
+ red rock texture.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/seafloor production.jpg
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The red rock texture is calculated into a displacement map and is used to
+ create a surface with heights.
+ The seafloor is made the same way
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The displacement map and the original texture are used on one mesh to create
+ the seafloor.
+ This method ensures that the texture looks realistic and the seafloor mesh
+ results in a surface, visible to the laser scanner in the simulator.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/ripple structure
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The surface of the terrain mesh is made from the texture itself by calculating
+ a displacement map from it and using both, the displacement map and the
+ diffusive texture on one mesh.
+ Shadows of objects indicate the three dimensional appearance
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

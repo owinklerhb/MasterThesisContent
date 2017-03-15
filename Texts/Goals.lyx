@@ -1,0 +1,288 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+Goals
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/goals_chart.png
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Overview of this works objectives.
+ The primary aim is to get an automated system for habitat mapping to identify
+ flora and fauna as well as geological objects.
+ This gives options for secondary aims of interpretative character like
+ effects on the carbon cycle.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The primary goals of this thesis are to develop an automated system that
+ is able to collect data on its own and provide it as a service to state
+ of the art methods of the artificial intelligence (AI) as well as geosciences.
+ As most automated systems are developed to execute deep sea tasks, this
+ approach is pointing more to shallower regions like typical onshore habitats.
+ Like the seagrass Project, this work is interested in the health of the
+ habitat but in terms of data mining instead of direct analysis of the individua
+l plants.
+ By using seagrass as a topic for the developed algorithm it shows how it
+ handles the identification of objects.
+ It is versatile enough to be used in other areas, like deep sea mining,
+ detection of seepage, pollution or artifacts, depending on the need for
+ the mission.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+As the Habitat mapping normally contains the survey of the flora as well
+ as the fauna, I decided to include starfish and crabs which are detected
+ additionally to the seagrass.
+ For reasons of geoscientific interest, I also added different kinds of
+ rock that are identified as well.
+ This gives the opportunity to step deeper into this topic later by refining
+ the algorithm.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The detection of the seagrass leads not only to the overview of its spread
+ but reveals also different insights to the habitats activity and influences
+ affecting its growth.
+ Simulated influences, like a human impact (anchoring and shadow casting
+ due to a walkway) or animal grazing are directly affecting the spread over
+ the area and reducing the sizes of the meadows so the influence will be
+ visible in the data files as well as in the resulting maps, generated after
+ loading the discovery into a Geo Information System (GIS).
+ As the data uptake is done in the way of traditional geoscientific methods
+ (geo position + value), also AI methods will profit from this approach
+ since it can be used to produce robot knowledge and log the mission is
+ a hierarchically, semantic way.
+ By logging the mission, the knowledge is observable in an external, cloud
+ based web interface (Open-EASE).
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\color black
+On basis of processing the data in GIS, a secondary aim is to get information
+ about the topic of seagrass spread due to its ability to fix carbon with
+ up to 
+\begin_inset Formula $1.18\frac{mg\,C}{g\,dry\,weight\,h^{-1}}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "21"
+
+\end_inset
+
+ (depending on species and age of individual) or 83 to 138
+\begin_inset Formula $\frac{g\,C}{m^{2}\,yr^{-1}}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "30,31"
+
+\end_inset
+
+(in general) within the sediment.
+
+\shape italic
+\size small
+\color red
+ 
+\shape default
+\size default
+\color inherit
+This is an enormous number when it comes to big meadow coverage.
+ By keeping in mind that the carbon is stored within the sediment in anoxic
+ conditions, this makes a big difference to Rain forest (or typical terrestrial)
+ carbon fixation.
+ As the carbon is set free due to decomposition of the organic material
+ or fire, the seagrass' carbon is stored in the sediment for millennia time
+ scales, even if the plant becomes decomposed.
+\end_layout
+
+\begin_layout Standard
+\noindent
+This work will compare the coverage of the seagrass meadows in an affected
+ and unaffected situation and calculate the loss of carbon storage from
+ the influencing object by simulating them, based on real world data, and
+ the plants growth simulation.
+ The data acquisition is done in an AUV simulator (UWSim) to run the algorithm
+ on a real robotic framework and to be able to subsequently evaluate the
+ mission.
+ By collecting data, the robots knowledge and experiences can be accessed
+ in different ways such as:
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+CSV File for GIS to provide data for traditional map material and polygon
+ meshes from the plants spread as well as object occurrence
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+Photographs of detected objects
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+Semantic knowledge and episodic memory from the mission
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+Semantic maps that can be queried from Open-EASE web interface
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+For further purposes, objects of the surrounding will be identified and
+ can be asked for in a web-based knowledge representation.
+ An unexplored area with the AUV observation becomes a knowledge representation
+ by viewing it in the web interface.
+ By comparing episodic memory, the mission becomes a monitoring task.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The object recognition is done by color detection and placement on a map
+ in GIS which is representing the position of the semantic object.
+ An additional goal of this thesis is to make the data that is stored available
+ in Open-EASE to upport humans to understand the robots activity data as
+ well as the resulting environment experiences.
+ The result is a complete reconstruction of the scanned area as a traditional
+ as well as a semantic map with knowledge representation and a comparison
+ of different stages of the areas development.
+\end_layout
+
+\end_body
+\end_document

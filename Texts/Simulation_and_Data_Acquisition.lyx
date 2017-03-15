@@ -1,0 +1,876 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+Simulation and Data Acquisition 
+\size footnotesize
+(UWSim, OpenCV and Logging)
+\end_layout
+
+\begin_layout Standard
+\noindent
+UWSim is an open source AUV simulator developed by the university of Girona.
+ It started with the RAUVI and TRIDENT Project to simulate and test algorithms.
+ It is written in C++ and uses OpenSceneGraph and its osgOcean libraries
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "29"
+
+\end_inset
+
+.
+ It is highly flexible and the scenes can be configured with standard third
+ party editing software like Blender that also provides the file formats
+ that are needed by UWSim.
+ The complete scene can be configured in a XML file that also contains the
+ characteristics of the objects like weight, spawning coordinates, color
+ and if it is an obstacle that can be bumped into or not.
+ The initial scenario represents the Girona test basin with a black box
+ that can be interacted with.
+ I used the scenario to set up my own.
+ I used the given parameters and changed it to my needs and produced the
+ meshes that represent the real world.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/cirs_uwsim.png
+	scale 32.5
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Initial scenario in UWSim in the test basin of Girona University (source:
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "29"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The Simulator comes with a texture that lies on the ground.
+ In reality it is a plain mesh with a texture so I was able to do the same
+ but with a little bit more representation of the reality since I was using
+ a displacement map for creating ripples that are representing the seafloor
+ (see chapter 
+\begin_inset Quotes eld
+\end_inset
+
+Blender
+\begin_inset Quotes erd
+\end_inset
+
+ in Methods).
+ It is also possible for the robot to interact with the ripples like scanning
+ them with the given laser sensor.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/laserbeam.png
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The yellow robot is the sensor equipped Girona 500.
+ It is scanning the underground with the laser beam that is visualized in
+ RViz with a vision decay of 1000 ms.
+ Higher areas are represent in red color while the lowest points are purple
+ and green, yellow, orange and blue are values in between.
+ The information is directly grabbed by the published topics of the sensors.
+ The results are on the right with a 2x magnification.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The Simulator provides a few sensors that are important for this work.
+ The dataNavigator is used to give the robot automated commands to move
+ into a certain direction.
+ The Camera sensors are used by my algorithm that thresholds the image and
+ measures the appearance of the seagrass and the GPS sensor provides the
+ position of the value for my algorithm.
+ Most of this can be seen in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:complete_simulator"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/how it works.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The image shows the simulator while it is started and is simulating the
+ working area with seagrass and objects.
+ The processes that are running in the background are given within the specific
+ windows and the arrows are indicating their influence.
+ The window with the threshold camera is just for visualization and doesn't
+ need to be opened, the process is running in the background.
+ While the controller can provide a movement message, the algorithm is writing
+ continuously the values and GPS information into a CSV file
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:complete_simulator"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\begin_inset Newpage newpage
+\end_inset
+
+After setting everything like the underground and all values within the
+ XML file, the scenarios are just slightly different.
+ The rocks ans animals are static on the ground while the the distribution
+ of the seagrass changes.
+ It is always a different mesh that is representing the growth and spread.
+ Like the description in the motivation chapter, the seagrass has fixed
+ values of growth which are once undisturbed and influenced by different
+ kinds of threats.
+ Each scenario comes with four different stages (sequences) and each stage
+ is scanned two times (W, E, ) which makes in total 32 scans.
+ While the robot is running through the scenario autonomously, this makes
+ the most convenient part of the work.
+ This should represent the reality because the robot would do the same while
+ scientists would just wait for the data.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The robot in the simulation comes with twelve different sensors and a manipulato
+r that all can be moved around 6 degrees of freedom:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Y
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Z
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Roll
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pitch
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yaw
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+6 degrees of freedom of the robot that is used in the simulator
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0pt">
+<column alignment="left" valignment="top" width="7cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sensor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Camera
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Provides virtual images that can be used for developing vision algorithms
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Range Camera
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Depth image of the camera
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Range Sensor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Measures the distance to the nearest obstacle along pre-defined directions
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Object Picker
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fakes object grasping when the object is closer to a pre-defined distance
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pressure
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Provides a pressure measure
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DVL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Estimates the linear speed at which the vehicle is traveling.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Imu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Estimates the vehicle orientation with respect to the world frame
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GPS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Provides the vehicle position with respect to the world, only works when
+ the vehicle is near the surface
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Multibeam
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Simulates an array of range sensors, providing distances to nearest obstacles
+ in a plane at constant angle increments
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Force
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Estimates the force and torque applied to a vehicle part
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Structured light projector
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Projects a laser or regular light on the scene
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dredge
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dredges mud from buried objects
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Twelve different sensors that come with the simulator.
+ The Sensors are fixed with the robot but can rotate with the robot itself.
+ Source of sensor documentation: UWSim Wiki - Main characteristics of UWSim
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+For the use of this project the simulator brings several sensors that are
+ used for optical reasons and for position reconstruction.
+ The simulator gives the possibility to interact with the simulated world
+ and interact with objects.
+ The prepared meshes from Blender and QGIS are loaded into UWSim and represent
+ the rebuilding of the reality.
+ Information from the robot are given as topics that one can subscribe to
+ or interact with these values like publishing them into a comma separated
+ value (CSV) file.
+ As part of ROS (s.
+ chapter 
+\begin_inset Quotes eld
+\end_inset
+
+Hosting the Simulator
+\begin_inset Quotes erd
+\end_inset
+
+) the libraries of OpenCV are used to get an idea of the appearance of objects
+ on the simulated seafloor.
+ The whole environment is stored in the given XML file that provides the
+ paths and values for the mesh files.
+ In this case its all objects like crabs, rocks, starfish and the seagrass
+ meadows.
+ Also some of the values of the sensors and the robot are stored in this
+ file.
+ As the meshes are only the seafloor and objects, the water surface is provided
+ by the simulator itself.
+ Some of the values contain the position of the sun, water depth and dirtiness,
+ wind speed and direction, physics parameters, initial position of the robot
+ and the position of the sensors with respect to the robots position.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/filestructure.png
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The structure how the simulator is organized on a Linux machine with my
+ method of scanning the seafloor (CamerTopicUWSim -> Camera_topic_detection)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The terrain (seafloor) is stored as a OBJ File in a specific location so
+ that the simulator can find it.
+ To make the work easier, I chose to work with the seafloor mesh as a 
+\begin_inset Quotes eld
+\end_inset
+
+Trimesh
+\begin_inset Quotes erd
+\end_inset
+
+ that doesn't collide with objects because I was first facing problems with
+ objects that are just disappearing into the the void (empty space) because
+ of collision.
+ Since the robot is only using visual response it is not necessary to have
+ a collision model for robot and the environment.
+ It also saves resources that otherwise would be used.
+ As I am not using all sensors, I am also only recording only the sensor
+ messages that are responsible for the robot movement and detection.
+\end_layout
+
+\end_body
+\end_document

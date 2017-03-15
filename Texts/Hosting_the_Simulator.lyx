@@ -1,0 +1,821 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Hosting the Simulator 
+\size footnotesize
+(ROS)
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Hosting-the-Simulator"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The Robot Operating System (ROS) is an open source operating system that
+ is used in almost all robots.
+ It is not an operating system that is managing processes, it provides communica
+tion layers that allow processes to communicate with each other 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "27"
+
+\end_inset
+
+.
+ It is highly reliable and flexible since it allows the user to publish
+ and subscribe to self made topics.
+ The used simulator UWSim runs completely in ROS and provides published
+ data that can be subscribed to and the gained data is written automatically
+ into a file which is ready to read by QGIS.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+The system is working with a „talker“ and „listeners“.
+ It can be referred to like in a conversation where one has to imagine someone
+ who is talking and others that are listening like in a lecture with a teacher
+ and students.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The Simulator gets information from the camera node (provided data from
+ the optical sensor) which contains the image information as a ROS message
+ which is present as a combination of numbers (ROS shares information in
+ form of messages).
+ The code interprets the numbers to serve an image that OpenCV (an image
+ manipulation framework) can work with so the given information will be
+ separated into different tasks.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/Talker and Listener (Publisher and Subscriber).jpg
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The 
+\begin_inset Quotes eld
+\end_inset
+
+Talker
+\begin_inset Quotes erd
+\end_inset
+
+ is providing information while the subscriber is listening to it.
+ The chatter Callback is taking the information from the subscriber and
+ the 
+\begin_inset Quotes eld
+\end_inset
+
+Listener
+\begin_inset Quotes erd
+\end_inset
+
+ gets the information that was heard by the chatterCallback
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The publisher is 
+\begin_inset Quotes eld
+\end_inset
+
+talking
+\begin_inset Quotes erd
+\end_inset
+
+ the content of the camera image.
+ It needs to be converted because the image processing application OpenCV
+ does not directly work with messages from ROS but with images.
+ Therefore the message is converted into an OpenCV readable format (BGR8)
+ before performing any manipulation.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+CV_Bridge (a plugin for ROS) helps to form the message into an image while
+ one is subscribing to the topic.
+ In this work this is done with the cv_bridge that makes it possible to
+ work with images to perform thresholding and create a binary image.
+ The gained data is published into an external file by a publisher that
+ can be found in the code snippets.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "numbers=left,basicstyle={\scriptsize\ttfamily},breaklines=true,tabsize=2,keywordstyle={\color{blue}},commentstyle={\color[RGB]{98,117,240}},emphstyle={\color{red}},stringstyle={\color[RGB]{4,133,23}},identifierstyle={\color{black}},frame=tbrl,columns=fixed,breakatwhitespace=false,backgroundcolor={\color[rgb]{0.95,0.95,0.95}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ofstream myfile_red("green_plants.csv", std::ios_base::app); //gained data
+ will be written into a csv file
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+cv_bridge::CvImagePtr cv_ptr_green = nullptr;
+\end_layout
+
+\begin_layout Plain Layout
+
+cv_bridge::CvImagePtr cv_ptr_foto_green = nullptr;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if(sensor_msgs::image_encodings::isColor(imgData->encoding))
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+	 cv_ptr_green = cv_bridge::toCvCopy(imgData, sensor_msgs::image_encodings::BGR8
+);
+\end_layout
+
+\begin_layout Plain Layout
+
+	 cv_ptr_foto_green = cv_bridge::toCvCopy(imgData, sensor_msgs::image_encodings:
+:BGR8);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(cv_ptr_red)
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+	 cv::Mat imgMat_red = cv_ptr_green->image;
+\end_layout
+
+\begin_layout Plain Layout
+
+	 cv::Mat red_foto = cv:prt_foto_green->image;
+\end_layout
+
+\begin_layout Plain Layout
+
+	 cv::Mat hsv_image_green;
+\end_layout
+
+\begin_layout Plain Layout
+
+	 cv::Mat lower_green_hue_range;
+\end_layout
+
+\begin_layout Plain Layout
+
+	 cv::Mat upper_green_hue_range;
+\end_layout
+
+\begin_layout Plain Layout
+
+	 cv::Mat green_hue_image;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	 ros::NodeHandle n_green;
+\end_layout
+
+\begin_layout Plain Layout
+
+	 ros::NodeHandle n_green_string;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	 cv::cvtColor(imgMat_red, hsv_image_green, COLOR_BGR2HSV);
+\end_layout
+
+\begin_layout Plain Layout
+
+		cv::inRange(hsv_image_green, cv::Scalar(42.5, 50, 50), cv::Scalar(67.5,
+ 255, 255), lower_green_hue_range);
+\end_layout
+
+\begin_layout Plain Layout
+
+		cv::inRange(hsv_image_green, cv::Scalar(42.5, 10, 35), cv::Scalar(67.5,
+ 255, 255), upper_green_hue_range);
+\end_layout
+
+\begin_layout Plain Layout
+
+		cv::addWeighted(lower_green_hue_range, 1.0, upper_green_hue_range, 1.0,
+ 0.0, green_hue_image);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	cv::cvtColor(green_hue_image, cv_ptr_green->image, CV_GRAY2BGR);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	ros::Publisher imgPub_perc_green = n_green.advertise<sensor_msgs::Image>("Image_
+Perception_green", 100);
+\end_layout
+
+\begin_layout Plain Layout
+
+	ros::Publisher imgPub_perc_green_string = n_green.advertise<sensor_msgs::Image>(
+"Image_Perception_green_string", 100);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	imgPub_perc_green.publish(*(cv_ptr_green->toImageMsg()));
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	ros::rate Loop_rate(0.3);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The code represents the internal structure of receiving, thresholding and
+ publishing the data of the green channel.
+ This is performed with all colors that appear in the robots camera.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/FullSizeRender2.jpg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Results of the code: The original image gets separated into color channels
+ so the occurring white pixels can be interpreted as percentage of the whole
+ image.
+ This separates the objects and results in an occurrence density
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+ROS is hosting the simulator and everything it is publishing.
+ Other topics can subscribe to the output of the system.
+ This means that the published data from the simulator can be used in other
+ topics that are provided by ROS.
+ In this work I am using it not only to threshold the received camera image
+ but count the white pixels in the resulting binary output.
+ This is used to calculate the percentage of appearance of different colors
+ so the density of color specific objects can be calculated.
+ Also the GPS locations from the positioning node within the simulator are
+ written beside the pixel count within the output files.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Structure of CSV file:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Percentage [%]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Latitude
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Longitude
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+File name with time stamp
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.45182
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+74.6445
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.03604
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PLANTS_23-02-2017 03:27:23.png
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.23438
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+39.556
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-2.03632
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PLANTS_23-02-2017 03:27:39.png
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+42.2188
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+33.5495
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-2.03629
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PLANTS_23-02-2017 03:27:43.png
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.8945
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+27.725
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-2.03602
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PLANTS_23-02-2017 03:27:46.png
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The table indicates and example of the structure how the data is recorded
+ by the robot.
+ The coordinates result from the coordinate reference with respect to the
+ world of UWSim
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+QGIS is capable to read the file as a comma separated file that can be interpret
+ed by its Latitude, Longitude and an attribute which is the value of seagrass
+ coverage in percent in this case.
+ The value is presented as a dot and is only a value on a specific coordinate.
+ The dots are represented as a „heat“ source for a heat-map.
+ The higher the value, the higher the heat.
+ This heat-map represents the spread of the seagrass (green objects) density
+ and is interpreted for later calculations.
+ Crabs, starfish, yellow and blue rocks are presented with symbols.
+ A map is showing the results of what the robot saw during its mission.
+ Plants occur as a symbol, its spread is indicated as lighter green color,
+ rocks are represented as diamond squares in yellow and blue, crabs are
+ red pentagon shapes and starfish are represented as purple stars.
+ The higher the percentage value, the larger the icon is in size on the
+ map.
+ No value shows no icon and a small value just a small icon.
+ The steps are fix to five different sizes so the occurrence can easily
+ be interpreted on the maps.
+\end_layout
+
+\end_body
+\end_document

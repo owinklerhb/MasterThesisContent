@@ -1,0 +1,178 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+Possible Use Cases
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+There are many opportunities to use this approach.
+ One obvious case is to create and publish environment maps or data and
+ if necessary to determine protected areas in which fishery is prohibited
+ or anchorage might be forbidden.
+ Furthermore, this approach is a chance for every land registry office to
+ widen and expand their knowledge to the marine environment.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+Because plants are setting their roots into the sediment, they are solidifying
+ the underground.
+ This is an indirect act of coastal protection which can be important to
+ highly populated coastal regions.
+ The high environmental stress that is pushing onto the coastline is mainly
+ associated with anthropogenic influence.
+ Increasing population, rising temperatures and acidification of the oceans
+ already influencing the coastal ecosystems.
+ Extreme consequences would cause kelp forests to disappear in the south
+ and marl environments to vanish in the north due to warming and acidification.
+ The influx of nutrients into coastal areas leads to more productive biomass
+ and a rise of hypo toxic events especially for estuary systems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "46"
+
+\end_inset
+
+.
+ To prevent or predict such events, a monitoring system is postulate.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+Seagrass meadows occur on almost every shallow coastal line in the world
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "24"
+
+\end_inset
+
+ and play a valuable role in these ecosystems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "47"
+
+\end_inset
+
+.
+ They are recycling nutrients, stabilize the sediment, provide habitat for
+ survival and reproduction of vertebrate and invertebrate taxa and show
+ a “nursery” function for some species 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "25"
+
+\end_inset
+
+.
+ As entire estuaries are identified as nurseries to protect individuals
+ from predators and to provide food, it deserves to be protected.
+ Because these environments are almost omnipresent in coastal areas, the
+ treatment of them is also interesting for decision makers of projects.
+ By monitoring, these decision makers have another component to look at
+ when it comes to calculation of long-term cost estimations.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+Not only seagrass is an important component to look at but the approach
+ has its variability.
+ It is important to change topics easily due to different interests components
+ that are identified in this project, it is relatively easy to add or change
+ the topics.
+ This gives the opportunity to also use it in terms of exploration to identify
+ resign oil, methane or to search for fields of gas hydrates.
+ Beside the geoscientists it is also a chance for biologists to observe
+ environments and engineers to test their algorithms.
+\end_layout
+
+\end_body
+\end_document

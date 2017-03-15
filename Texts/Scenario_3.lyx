@@ -1,0 +1,271 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Sequences 3.1 to 3.4 - Shadow Casting
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/Scenario3.png
+	scale 58
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The scenario is showing an anchor that destroys parts of the upper right
+ to the lower right meadows.
+ The growth in the trench is decreased and leaves a scar in the recovered
+ field.
+ 2.1 shows the initial situation that isn't different to the one in 1.1 but
+ 2.2 contains a mesh of the anchor that can also be identified by the robot.
+ 2.3 is showing a slightly recovered area while 2.4 has recovered completely
+ but with a scar that indicates a former destruction.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+1
+\begin_inset Formula $^{st}$
+\end_inset
+
+ sequence of Scenario 3
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The first scenario shows a plank walk over a seagrass meadow.
+ Due to the light deficits the seagrass will start to die and decrease in
+ this area.
+ This scenario is the starting point like directly after the building progress
+ has finished so the winter scenario will provide a few plants and will
+ look like before but during the first change the material under the plank
+ walk won't grow because its covered by the plank.
+ after the first stage, the seagrass that is undisturbed, will grow like
+ in the previous scenarios but with a decreasing size under the plank walk.
+ This leads to a certain loss of mass material in the area of the plank
+ walk object.
+ So in the third situation the seagrass under the plank will be dead and
+ the seafloor will be completely present.
+ Since there is only one major influence to the scene, it is less time consuming
+ to simulate and scan the area and only the SE section needs to be scanned
+ four times.
+\end_layout
+
+\begin_layout Subsubsection*
+2
+\begin_inset Formula $^{nd}$
+\end_inset
+
+ sequence of Scenario 3
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The second scenario represents the next season after the walkway was installed.
+ It shows that the seagrass continues to die or doesn't continue to grow
+ and the underground will be present.
+ The mesh is removed in the visualization to make more clear what is happening
+ underneath the walkway.
+ Major differences are present in a larger scale.
+ By scanning the area a point outcrop would not make a big difference but
+ the whole picture shows first differences to the surrounding.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/walkway.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The mesh of the walkway that covers parts of the seagrass.
+ One walkway alone doesn't make a big influence but many of them would influence
+ much more
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+3
+\begin_inset Formula $^{rd}$
+\end_inset
+
+ sequence of Scenario 3
+\end_layout
+
+\begin_layout Standard
+\noindent
+The third scenario shows that the seagrass underneath the walkway is completely
+ vanished and the seafloor is completely present to the robot.
+ I will calculate if the growth of the surrounding seagrass can compensate
+ the lost with respect to the storage ability of carbon of the seagrass.
+\end_layout
+
+\begin_layout Subsubsection*
+4
+\begin_inset Formula $^{th}$
+\end_inset
+
+ sequence of Scenario 3
+\end_layout
+
+\begin_layout Standard
+\noindent
+As the seagrass is grown completely in this scene, it is possible to calculate
+ the difference between an unaffected and this scene.
+ As just one walkway does influence this area of 1 
+\begin_inset Formula $km^{2}$
+\end_inset
+
+it wouldn't influence the whole area of east Australia.
+ But for sure it isn't the only walkway in east Australia so in total there
+ should be an influence of shadow casting objects.
+\end_layout
+
+\end_body
+\end_document

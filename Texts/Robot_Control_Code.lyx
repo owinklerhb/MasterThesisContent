@@ -1,0 +1,590 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Robot Control Code (autonomous movement)
+\end_layout
+
+\begin_layout Standard
+\noindent
+Controlling the robot with the controller brings possibilities to adapt
+ a 
+\begin_inset Quotes eld
+\end_inset
+
+learning by demo
+\begin_inset Quotes erd
+\end_inset
+
+ algorithm but also contains the risk of failure for a system like I experienced
+ in weeks of the working process.
+ While the recording of the track and robot movement is continuously given,
+ the playback is triggered by many influences so the controlling with a
+ controller is good for testing purpose but not for simulation.
+ As this system is a non-deterministic one, the outcome of ROS record is
+ never the same as the input.
+ The more easy way is to use an extra code to give the robot commands to
+ rotate at a specific position during the mission execution.
+ Here, a launch file is used that provides the movement of the robot by
+ letting the dataNavigator topic move the robot forward by 0.5 m/s.
+ As the robot reaches different coordinates in the world frame, it changes
+ direction as it comes to that particular position.
+ The world frame has a 50x50 meter dimension and the robot changes direction
+ as it reaches 25 in positive or -25 in negative values on the Y-Axis.
+ The robot goes 0.5 meters to the left or right, depending on the area, that
+ needs to be scanned (western or eastern), and continues till it reaches
+ the most left (or right) extend.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The code of the 
+\begin_inset Quotes eld
+\end_inset
+
+autocontrol
+\begin_inset Quotes erd
+\end_inset
+
+ package by 
+\color black
+Srinivasan 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "52"
+
+\end_inset
+
+
+\color inherit
+ provides a launch file as well as a C++ file, that needs to be modified
+ by 
+\end_layout
+
+\begin_layout Itemize
+setting the borders of the area
+\end_layout
+
+\begin_layout Itemize
+removing other functions that have nothing to do with the movements
+\end_layout
+
+\begin_layout Itemize
+setting the path to the scenes that need to be scanned
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+By setting the path, the new file needs to be saved as a new launch file
+ so its easier to start a specific simulation:
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+\begin_inset listings
+lstparams "numbers=left,basicstyle={\scriptsize\ttfamily},breaklines=true,showstringspaces=false,tabsize=2,language={c++},backgroundcolor={\color[rgb]{0.95,0.95,0.95}},stringstyle={\color[rgb]{0.06, 0.10, 0.98}},keywordstyle={\color[rgb]{0.37, 0.08, 0.25}\bfseries},commentstyle={\color[rgb]{0.12, 0.38, 0.18 }\itshape},frame=lrbt,xleftmargin=15pt,emph={[1]{php}},emphstyle={[1]\color{black}},emph={[2]{if,and,or,else}},emphstyle={[2]\color[rgb]{0.74,0.74,.29}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<node 
+\end_layout
+
+\begin_layout Plain Layout
+
+	pkg="uwsim" 
+\end_layout
+
+\begin_layout Plain Layout
+
+	type="uwsim" 
+\end_layout
+
+\begin_layout Plain Layout
+
+	name="autocontrol" 
+\end_layout
+
+\begin_layout Plain Layout
+
+	respawn="false" 
+\end_layout
+
+\begin_layout Plain Layout
+
+	args="--configfile scene24.xml" //scene24.xml equals "Scene 2.4" 
+\end_layout
+
+\begin_layout Plain Layout
+
+	output="sceen" 
+\end_layout
+
+\begin_layout Plain Layout
+
+/>
+\end_layout
+
+\begin_layout Plain Layout
+
+<rosparam 
+\end_layout
+
+\begin_layout Plain Layout
+
+	param="Velocity"> [0.5,0.0,0.0,0.0,0.0,0.0] 
+\end_layout
+
+\begin_layout Plain Layout
+
+</rosparam>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Code snippet of the launch file to start the simulation of scene 2.4.
+ The rosparam sets the velocity of the robot forward at 0.5
+\begin_inset Formula $\nicefrac{m}{s}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+To change the scene, the XML file needs to be specified and to change the
+ speed [
+\begin_inset Formula $\unitfrac{m}{s}$
+\end_inset
+
+] the velocity parameters need to be changed.
+ The value describes the movement in X direction and the others can be checked
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:[r]oll,-[p]itch,-[y]aw_of_the_robot."
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+The controlling code is in the 
+\begin_inset Quotes eld
+\end_inset
+
+tf_vehicle_control
+\begin_inset Quotes erd
+\end_inset
+
+ where the code specifies the direction the robot has to move.
+ The odometry is set to a specific rotation of the robot and is following
+ with respect to the world and not with respect to the robot itself.
+ To provide the command to turn western, it needs to rotate 90 degrees but
+ if it had to move in southern direction it needs to rotate 180 degree instead
+ or another 90 degree.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Direction
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Degree
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+North
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+South
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+180
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+West
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+90
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+East
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-90
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The table describes the directions that need to be used within the code
+ to let the robot go in a specific direction
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align left
+If the robot reaches the most upper boundary (+25) of the area it needs
+ to rotate western to continue its scanning:
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+\align left
+\begin_inset listings
+lstparams "basicstyle={\scriptsize\ttfamily},breaklines=true,tabsize=2,language={c++},numbers=left,backgroundcolor={\color[rgb]{0.95,0.95,0.95}},stringstyle={\color[rgb]{0.06, 0.10, 0.98}},keywordstyle={\color[rgb]{0.37, 0.08, 0.25}\bfseries},commentstyle={\color[rgb]{0.12, 0.38, 0.18 }\itshape},frame=lrbt,xleftmargin=15pt,emph={[1]{php}},emphstyle={[1]\color{black}},emph={[2]{if,and,or,else}},emphstyle={[2]\color[rgb]{0.74,0.74,.29}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+if(first_time)
+\end_layout
+
+\begin_layout Plain Layout
+
+ {
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(x_value >= 25)
+\end_layout
+
+\begin_layout Plain Layout
+
+	 {
+\end_layout
+
+\begin_layout Plain Layout
+
+		odom = rotate_vehicle(0,0,90,odom,x_value,y_value,z_value,"UWVehicle_world");
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+		second_time = true; first_time = false;
+\end_layout
+
+\begin_layout Plain Layout
+
+	 }
+\end_layout
+
+\begin_layout Plain Layout
+
+	else {
+\end_layout
+
+\begin_layout Plain Layout
+
+			odom = apply_movement(Vehicle_velocity,odom);
+\end_layout
+
+\begin_layout Plain Layout
+
+			movement_steps+=1;req_z=-10;moved_z=0;movement_steps=0;
+\end_layout
+
+\begin_layout Plain Layout
+
+			arm_retracted=false;
+\end_layout
+
+\begin_layout Plain Layout
+
+		 }
+\end_layout
+
+\begin_layout Plain Layout
+
+ }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+This fragment of the code shows the command to move the robot.
+ It rotates by 90 degrees if the coordinate of the 
+\begin_inset Quotes eld
+\end_inset
+
+x
+\begin_inset Quotes erd
+\end_inset
+
+ value is reaching 25 or higher
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+Each change of movement is set in the code so for each side, around 100
+ steps are needed due to change in direction in northern and southern part.
+ This results in 200 steps for one whole scene which is present in the appendix
+ drive as well as on Github.
+ The robot does not stop until it reaches the final step in the code and
+ will then stay in position.
+ One task for the future would be to let it drive back to the initial point
+ and dive to a base station to recharge and send the gained data to a server.
+\end_layout
+
+\end_body
+\end_document

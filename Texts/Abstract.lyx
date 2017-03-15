@@ -1,0 +1,135 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 3cm
+\rightmargin 4cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+\paragraph_spacing onehalf
+\noindent
+Abstract
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Oceans are still largely inaccessible to humans and man-made devices, however,
+ there is an increasing need for sustained, persisted and affordable presence
+ that helps to understand and monitor amounts 96% of the Earth’s living
+ space.
+ Marine robotics as an innovative approach for exploration the Oceans and
+ ocean floor, but also as a link to existing systems (floats, drifters,
+ cabled networks), represents an emerging field MARUM and the University
+ of Bremen have been covering over the past decades, and is planning to
+ do so even more rigorously in the future.
+ Since very much knowledge and huge amounts of data are gained in marine
+ sciences, it is important to connect robotic systems to that advancement
+ in knowledge.
+ In order to exploit these technologically high developed systems, e.g.
+ for interactive science, video streaming, monitoring and long-term observations
+, it is mandatory that they are taught how to interact.
+ This thesis is concerned with the interaction between an AUV (autonomous
+ underwater vehicle) and the marine environment.
+ The objective was to simulate a seagoing mission where the system needs
+ to have knowledge to point and identify objects and annotate them by intertwini
+ng the disciplines of geosciences and artificial intelligence.
+ By using the cloud-based knowledge service called Open-EASE it's possible
+ to process and reason about activity as well as understand robots behavior.
+ it is possible for such a system to identify objects of various characteristics
+ in real time.
+ In this work I limited the objects to rocks, animals and seagrass and kept
+ the focus on their detection.
+ One of the main software frameworks for robot software development is the
+ Robot Operating System (ROS) that is hosting the underwater simulator (UWSim).
+ It includes ROS messages to process the robots sensor signals and stores
+ the found values in a file beside the geo location.
+ During mission execution all robot sensors and activity data are recorded
+ as an episodic memory and can be queried in Open-EASE afterwards.
+ By using a modeling software, the scenery is produced as well as high quality
+ render images of the scene to clarify subjects within this thesis.
+ The simulated area is a geo location near the eastern coast of Australia
+ and the robot is supposed to identify objects and recognize borders of
+ seagrass meadows.
+ Since the growth of the meadows represent a result of influences, they
+ are used to indicate changes in the environment with the robot as an automated
+ scientist who is looking for the cause.
+ The work is held most generic and the key results attest that the same
+ approach could be used in areas of seepage and methane hydrates, sediment
+ coverage versus precious poly metallic deposits, or artifacts (pipelines,
+ other construction) versus natural underground.
+ 
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,338 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+\noindent
+Sequences 2.1 to 2.4 - Anchoring
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/scenario2.png
+	scale 58
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The scenario is showing an anchor that destroys parts of the upper right
+ to the lower right meadows.
+ The growth in the trench is decreased and leaves a scar in the recovered
+ field.
+ 2.1 shows the initial situation that isn't different to the one in 1.1 but
+ 2.2 contains a mesh of the anchor.
+ 2.3 is showing a slightly recovered area while 2.4 has recovered completely
+ but with a scar that indicates a former destruction.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+1
+\begin_inset Formula $^{st}$
+\end_inset
+
+ sequence os Scene 2
+\end_layout
+
+\begin_layout Standard
+\noindent
+The first scenario is not different to the first reference scenario but
+ the second scene in here receives its first anthropogenic influence.
+ The seagrass gets hit and partly destroyed by an anchor that came down
+ from a ship and will remain only in the second scene.
+ The robot is supposed to identify the objects and show the trench within
+ the seagrass in the influenced area.
+ By comparing the undisturbed area with the area of the trench its easy
+ to see the difference.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The anchor has ripped a trench in some of the meadow areas and leaves a
+ destroyed area that the robot should be capable of to recognize.
+ The lost of the seagrass mass can be reproduced in QGIS as the robot is
+ recognizing less white pixels when it goes over the destroyed fields.
+\end_layout
+
+\begin_layout Subsubsection*
+2
+\begin_inset Formula $^{nd}$
+\end_inset
+
+ sequence of Scene 2
+\end_layout
+
+\begin_layout Standard
+\noindent
+The second scenario shows the area influenced by the anchor.
+ The robot is supposed to check the whole area and the data will point out
+ the regeneration of the influenced area to let the user calculate the deficits
+ of seagrass.
+ Also it will represent the growth of the seagrass in such an influenced
+ area.
+ It is possible to calculate the trench as an object and to link it to the
+ anchor in a semantic way.
+ By looking at the area by comparing the coverage of the seagrass, the loss
+ of seagrass is 2.09%.
+ At the first look this is a relatively small number but if it would be
+ more than just one anchor, the number would increase dramatically.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/52,52percent.png
+	scale 40
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename Images/50,43percent.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The left image shows the complete coverage of the seagrass area while the
+ right image is showing the same amount but with the trench which has been
+ cut with the anchor.
+ The left unaffected scene would make a coverage of 52.52% and the right
+ a coverage of about 50.43% which makes a difference of 2.09% of coverage.
+ Since this is a primary hypothetical prediction, it can also differ in
+ the end but this is the way, the calculations are set.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+3
+\begin_inset Formula $^{rd}$
+\end_inset
+
+ sequence of Scenario 2
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The third scenario is supposed to show if the seagrass has recovered from
+ the stress of the influence and to calculate a trend how long the plants
+ will need to recover from such an influence.
+ This will point out that the recovering is depending on the season, the
+ impact takes place.
+ As the seagrass has a reduced growth in some seasons, an area protection
+ could possibly be set during certain month within the year.
+ Summer is one of the most crowded seasons for people to use boats and the
+ growth rate of the seagrass is relatively reduced during this time.
+ This means that the recovering process would take place a few month later.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/anchor mesh.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The mesh of the anchor that appears in the simulation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+4
+\begin_inset Formula $^{th}$
+\end_inset
+
+ sequence of Scene 2
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The fourth scene is showing a complete recovered seagrass meadow with a
+ scar in it that the robot is not able to identify.
+ This means that it recovers to a normal state but got influenced during
+ the year and the carbon uptake as well as the productivity was reduced
+ in total.
+\end_layout
+
+\end_body
+\end_document

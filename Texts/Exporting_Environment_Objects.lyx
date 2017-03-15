@@ -1,0 +1,309 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Exporting Environment Objects
+\end_layout
+
+\begin_layout Standard
+\noindent
+Every set of objects needs to be exported from QGIS as well as Blender and
+ than imported to the simulator again.
+ This means they need to be exported in a file type that is supported either
+ by QGIS and Blender as well as by the simulator.
+ It is important to set the rendering type to „Blender render“ otherwise
+ the textures will be messed up due to different methods of texture alignment
+ in the different render engines.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/realworld blender object export.png
+	scale 47
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The left image shows the real world situation with borders in QGIS.
+ The green lines represent the borders of the seagrass meadows while the
+ red one indicates the borders of the operation area.
+ The right image shows the reproduced area in Blender as it is a 1:1 copy
+ of the meadows.
+ The meshes can be exported to be used directly within the simulator.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/ROCK_MESHES.png
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Two of the rocks that are spread over the seafloor in the simulation.
+ One is blueish, the other one reddish.
+ They represent different kinds of rocks that the robot has to recognize.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Cycles engine works in a different way for texture placement than Blender
+ render and makes it impossible for the simulator to interpret the texture
+ coordinates correctly so rendering for illustrations is done in cycles
+ while the working process is done in Blender render.
+ The objects are also reduced to a minimum of faces to reduce resource consumpti
+on during simulation.
+ To do so, every model is filtered by a reducing „Decimate“ modifier that
+ reduces the faces at a set factor.
+ In this case the rock model is reduced by 0.05 to decrease the amount of
+ faces a lot and end up with a model that almost looks the same but is dramatica
+lly reduced in size.
+ For simulation this makes a very big difference when it comes to resources
+ of the simulating machine.
+ The vision of the robot makes no difference between the two versions of
+ the rock but the simulation can be done on a weaker machine (cost effective)
+ as well as in a more effective way on stronger machines because.
+ It reduces the chance of run-time errors or memory outrun (time efficient).
+ This is not only the point for the rock but when it comes to a high amount
+ of objects in a complete system it can make a big difference so less faces
+ are always better to reduce the resource consumption.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/rocks blender size comparison.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+On the left the rock with 18,064 faces and a file size of 2.7MB versus the
+ smaller version on the right with only 1,463 faces and 130KB in file size.
+ No difference for the detection algorithm but a big difference to the simulatin
+g machine
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/crabs_starfish_MESHES.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The meshes of the crab and the starfish that are used in the simulation
+ - Both are low polygon models that come with small file size
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

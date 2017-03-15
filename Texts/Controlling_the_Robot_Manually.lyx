@@ -1,0 +1,575 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Controlling the Robot Manually
+\end_layout
+
+\begin_layout Standard
+\noindent
+The control of the robot is happening autonomously in every scene so the
+ experiments are running under the same conditions every time.
+ It is necessary to run the robot manually in the simulator from time to
+ time to check the outcome of the code of OpenCV.
+ To do so, a game pad by Logitech is used to control the robot.
+ While the movement is actually done in the background, by a topic called
+ 
+\begin_inset Quotes eld
+\end_inset
+
+dataNavigator
+\begin_inset Quotes erd
+\end_inset
+
+ which sets a velocity value to the robots movement in different directions,
+ the controller is set between the control code of the simulator and the
+ message.
+ The dataNavigator receives the controller messages and sends the specific
+ value of the Joystick to the simulator which will then interpret it to
+ move the robot.
+ The code, that is normally providing information to the robot movement
+ is called a 
+\begin_inset Quotes eld
+\end_inset
+
+teleoperator
+\begin_inset Quotes erd
+\end_inset
+
+ but as the controller incurs this part, it is called a hybrid teleoperator
+ (from the ROS package 
+\begin_inset Quotes eld
+\end_inset
+
+joy_control
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+For reasons of checking what the different topics said, the whole path and
+ other messages can be stored in a so called 
+\begin_inset Quotes eld
+\end_inset
+
+bagfile
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This records the output from the controller, or better said, the incoming
+ dataNavigator message as well as other messages that one can define in
+ the bag file.
+ This can also be played back after the recording finished or evaluated
+ in external software.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The robot comes with thrusters (for realistic movement in a physics engine)
+ which can be controlled ald its also possible to mor the robot by repositioning
+ it in the simulators world.
+ Those thrusters are needed when it comes to realistic physics.
+ As the controlling of the thrusters is not necessary in this simulation
+ due to the size of the area, I am just using the repositioning function.
+ In terms of physics it would not make any sense to apply extra calculations
+ onto the simulator because the main focus is set onto the detection instead
+ of realistic physics.
+ Nevertheless the robot is controlled either by a code that provides an
+ automated behavior or by a Human interface device (HID) like a game pad.
+ For the Simulation I am using a Logitech F310 which is showing a typical
+ button configuration of a controller used for the Sony PlayStation.
+ To make ROS recognize the controller, I am using a hybrid teleoperator
+ that is configured to subscribe to the USB joystick interface and publish
+ the signal to the dataNavigator of UWSim.
+ It normally works for controllers that have a configuration file of an
+ Xbox controller but works as well with the Logitech controller, since Xbox
+ and PlayStation controllers are supported by the system.
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/controller.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Logitech F310 USB Game pad for robot controlling in the simulator
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+As every command in ROS, the velocity changing command can also be run by
+ the „rosrun“ command.
+ The velocity of the robot is manipulated by a value on a given Axis.
+ It is structured by a command to the specific topic with a value in an
+ array: [topic] [x] [y] [z] [r] [p] [y] and the units are m/s and rad/s,
+ depending on the axis.
+ To make the robot move into X direction, it is necessary to provide the
+ command like this: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\scriptsize\ttfamily},breaklines=true,showstringspaces=false,tabsize=2,language={c++},backgroundcolor={\color[rgb]{0.95,0.95,0.95}},stringstyle={\color[rgb]{0.06, 0.10, 0.98}},keywordstyle={\color[rgb]{0.37, 0.08, 0.25}\bfseries},commentstyle={\color[rgb]{0.12, 0.38, 0.18 }\itshape},frame=lrbt,xleftmargin=15pt,numbers=left,emph={[1]{php}},emphstyle={[1]\color{black}},emph={[2]{if,and,or,else}},emphstyle={[2]\color[rgb]{0.74,0.74,.29}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+\noindent
+
+rosrun uwsim setVehicleVelocity /dataNavigator 0.2 0 0 0 0 0
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/RPY.png
+	scale 28
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+[r]oll, [p]itch, [y]aw.
+ The three rotation axis of an object in a 3D environment and [x] [y] [z]
+ for left, right, up, down, forward and backwards
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:[r]oll,-[p]itch,-[y]aw_of_the_robot."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The command makes the robot move in X-Axis (forward) direction on a constant
+ velocity of 0.2m/s.
+ For rotation, the robot needs a value on one of the [r] [p] [y] axis.
+ After doing so, the robot will rotate.
+ To move the robot more into depth it’s the same command but just setting
+ the [z] value.
+ Instead of entering a negative value (due to downward movement) the value
+ is positive, because of a velocity that pushes the robot into depth.
+ Instead of velocity, the robot can also be placed into direct coordinates
+ of the Cartesian world space.
+ By using the command setVehiclePosition it is possible to not only move
+ the robot but place it everywhere in the environment.
+ by using the following command: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\scriptsize\ttfamily},breaklines=true,showstringspaces=false,tabsize=2,language={c++},backgroundcolor={\color[rgb]{0.95,0.95,0.95}},stringstyle={\color[rgb]{0.06, 0.10, 0.98}},keywordstyle={\color[rgb]{0.37, 0.08, 0.25}\bfseries},commentstyle={\color[rgb]{0.12, 0.38, 0.18 }\itshape},frame=lrbt,xleftmargin=15pt,numbers=left,emph={[1]{php}},emphstyle={[1]\color{black}},emph={[2]{if,and,or,else}},emphstyle={[2]\color[rgb]{0.74,0.74,.29}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+\noindent
+
+rosrun uwsim setVehiclePosition /dataNavigator 0.2 0.2 0 0 0 3.14 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+the robot will be set to the position X = 0.2, Y = 0.2, Z = 0 and will be
+ rotated by 180°.
+ While the program of setVehiclePosition is running, it is not possible
+ to move the robot by setVehicleVelocity.
+ There are different possibilities to move the robot and interact with it.
+ The commands that can be used are for velocity, position, twist and pose.
+ But to interact with the robot, it would be hard to just type in commands
+ and change them when its time to turn the robot or dive and come up again.
+ [Pratz et al., 2012] For this reason it is handy to use a program in the
+ background, that is publishing a message constantly, which is changing
+ the dataNavigator array.
+ The way it is done in this work, is with the mentioned hybrid teleoperator
+ in manual control and by code in autonomous control.
+ It is started by the command of: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "numbers=left,basicstyle={\scriptsize\ttfamily},breaklines=true,showstringspaces=false,tabsize=2,language={c++},backgroundcolor={\color[rgb]{0.95,0.95,0.95}},stringstyle={\color[rgb]{0.06, 0.10, 0.98}},keywordstyle={\color[rgb]{0.37, 0.08, 0.25}\bfseries},commentstyle={\color[rgb]{0.12, 0.38, 0.18 }\itshape},frame=lrbt,xleftmargin=15pt,emph={[1]{php}},emphstyle={[1]\color{black}},emph={[2]{if,and,or,else}},emphstyle={[2]\color[rgb]{0.74,0.74,.29}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+\noindent
+
+roslaunch joy_controls hybrid_teleoperator.launch 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+This is launching the code for using the joystick input from USB and uses
+ the signals to create values for the dataNavigator.
+ As the robot provides more systems to manipulate than the controller can
+ provide buttons, there is a key button to change between the robot and
+ the manipulator arm.
+ While performing a mission, the data of the movement is stored into a .bag
+ file.
+ This Bagfile will provide the signal that is recorded from the teleoperator
+ and can be replayed directly to the robot or the simulator.
+ The Bagfile will normally be recorded by typing: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\scriptsize\ttfamily},breaklines=true,showstringspaces=false,tabsize=2,language={c++},backgroundcolor={\color[rgb]{0.95,0.95,0.95}},stringstyle={\color[rgb]{0.06, 0.10, 0.98}},keywordstyle={\color[rgb]{0.37, 0.08, 0.25}\bfseries},commentstyle={\color[rgb]{0.12, 0.38, 0.18 }\itshape},frame=lrbt,xleftmargin=15pt,numbers=left,emph={[1]{php}},emphstyle={[1]\color{black}},emph={[2]{if,and,or,else}},emphstyle={[2]\color[rgb]{0.74,0.74,.29}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+\noindent
+
+rosbag record -a
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The only problem that comes with this command is that this would record
+ everything that comes through the ros pipeline and would produce a humongous
+ file size and also record the camera topic as well and the data output
+ would always be the same.
+ This why why I record only the topics that are necessary for controlling
+ the robot.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\scriptsize\ttfamily},breaklines=true,showstringspaces=false,tabsize=2,language={c++},backgroundcolor={\color[rgb]{0.95,0.95,0.95}},stringstyle={\color[rgb]{0.06, 0.10, 0.98}},keywordstyle={\color[rgb]{0.37, 0.08, 0.25}\bfseries},commentstyle={\color[rgb]{0.12, 0.38, 0.18 }\itshape},frame=lrbt,xleftmargin=15pt,numbers=left,emph={[1]{php}},emphstyle={[1]\color{black}},emph={[2]{if,and,or,else}},emphstyle={[2]\color[rgb]{0.74,0.74,.29}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+\noindent
+
+rosbag record /dataNavogator /force /gps
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+This limitation writes the data that will always stay the same in all scenarios
+ so the robot is expected to perform the same movement as recorded.
+ To playback the pre-recorded movement, it is necessary to type the command
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\scriptsize\ttfamily},breaklines=true,showstringspaces=false,tabsize=2,language={c++},backgroundcolor={\color[rgb]{0.95,0.95,0.95}},stringstyle={\color[rgb]{0.06, 0.10, 0.98}},keywordstyle={\color[rgb]{0.37, 0.08, 0.25}\bfseries},commentstyle={\color[rgb]{0.12, 0.38, 0.18 }\itshape},frame=lrbt,xleftmargin=15pt,numbers=left,emph={[1]{php}},emphstyle={[1]\color{black}},emph={[2]{if,and,or,else}},emphstyle={[2]\color[rgb]{0.74,0.74,.29}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+\noindent
+
+rosbag play mybagfile.bag
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+to be able to do that, one is recommended to start the command from the
+ same directory as the .bag file is located in.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+Every scenario is divided into two parts (West and East).
+ It easier to re-record a mission if one part needs to be scanned again
+ and to minimize failure.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/scanarea.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Structure of the scanning of the working area which is in some parts only
+ different in the eastern side.
+ This makes it much easier to scan only one part if the western side is
+ the same as in another scene
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The center point of the area is the initial point of the robot.
+ While the task of the recording is running, ROS is writing the collected
+ values in the .csv file in the background and it is ready to be read by
+ QGIS.
+ This can also be done live as the robot is performing the mission and by
+ hitting f5 (refresh) within QGIS, the recorded value of the robots are
+ presented to the user as they are recorded in that moment.
+ This can be done either during the manual as well as during the autonomous
+ control.
+\end_layout
+
+\begin_layout Subsubsection*
+rosrun, roslaunch and rosbag
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+„rosrun“ allows the user to run executable code directly from the current
+ directory.
+ It is not necessary to go into a specific directory to execute the program.
+ Every time one has changes something in the working directory, he has to
+ „rosmake“ (recompile) his work space again.
+ While doing so, ROS locates all executables to link the commands to the
+ files.
+ roslaunch therefore is used to read .launch files in XML format to do certain
+ actions.
+ The tool is normally used to launch the nodes locally and remotely via
+ SSH and can be set as a parameter on a server 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "59"
+
+\end_inset
+
+.
+ In this work, it is used to launch the autocontroller (autonomous movement
+ of the robot) and the scenes at the same time.
+ The rosbag command is used as a tool to record various operations in ROS.
+ The rosbag files include recording of topics, playback of the topics and
+ validating them.
+ Therefore it is a handy tool for testing reasons.
+ In this work, the rosrun command is used to start the detection as well
+ as the hierarchical recorder Semrec.
+ The roslaunch command is used when it comes to start a mission.
+\end_layout
+
+\end_body
+\end_document

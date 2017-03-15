@@ -1,0 +1,199 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+Robots Cognition
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\color black
+In the robotics, the missions/tasks environments are reproduced in Open-EASE.
+ It is a framework to visualize semantic object maps, which are a subcategory
+ of maps that store information about task-relevant objects of the environment
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "44"
+
+\end_inset
+
+.
+ The Open-EASE interface provides a tell-ask interaction of the robot, the
+ map and the human.
+ Tenorth and Beetz 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "42"
+
+\end_inset
+
+ have provided KnowRob as a concept of virtual knowledge base a technique
+ to create a symbolic layer on top of the robots internal data structure
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "42"
+
+\end_inset
+
+.
+ This allows to keep original data structures in the background and to provide
+ abstract concepts in low-level data.
+ KnowRob comes with an internal design consideration that is following different
+ rules:
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+\align block
+provide tell-ask service
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+\align block
+operate as part of the robots control system
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+\align block
+provide encyclopedic base to define and specify information for autonomous
+ robot control
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+\align block
+etc ...
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+and other robot specific rules.
+ As KnowRob developed separately to FieldLog (ontology based mapping tool),
+ which comes with similar rules, it carves out that such a system can be
+ self demounting if it is not flexible enough to operate with different
+ data structures, so it can be adept to many systems.
+ The demand of knowledge production, storage and representation is clearly
+ given by the fact that similar systems develop in different disciplines.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+KnowRob is designed in daily tasks and environments, such as kitchens with
+ cooking devices within.
+ The knowledge base is widely specified on objects like cupboards, spatulas,
+ cutlery and food related devices in general.
+ The state of the art to daily task robotics is very high developed as framework
+s like RoboSherlock provide a possibility for mobile robots to operate in
+ a human environment and facing the challenge of recognizing objects with
+ different visual characteristics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "43"
+
+\end_inset
+
+.
+ The artificial intelligence with robotics in daily tasks and environments
+ is so far developed that robots are already able to learn about their surroundi
+ngs and record their findings, movements and decisions semantically so the
+ user is able to understand what the robot saw, did and why he did it.
+ In this work, the robot is not learning or has to make complex decisions
+ but by developing first step systems such as object recognition, it is
+ likely to implement systems like RoboSherlock to it to provide a much higher
+ chance to let a robot learn about the environmental systems.
+\end_layout
+
+\end_body
+\end_document

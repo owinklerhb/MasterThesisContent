@@ -1,0 +1,569 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Scenarios for Simulation 
+\size footnotesize
+(Robotics)
+\end_layout
+
+\begin_layout Standard
+\noindent
+Once the meshes in QGIS are generated and saved, all information that are
+ needed for the environment are gathered, the meshes are used to set areas
+ for the appearance of the seagrass within the blender environment onto
+ the seafloor.
+ To do so, the weight tool is used because the appearance of the plants
+ can then be manipulated easier.
+ With this tool it is possible to set a density of objects to appear in
+ the marked areas.
+ In this project this is done on the seafloor mesh and the polygons from
+ QGIS as borders for the appearance.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/Blender weight.png
+	scale 44
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Simulation in Blender is showing the density of occurring seagrass plant
+ objects.
+ Red indicates a high occurrence while light blue is the lightest occurrence
+ or the lowest density.
+ Darker blue is indicating no occurrence as one can see on the results in
+ the left image.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The upper image shows the principle of the weight paint tool.
+ The right one is showing high weight in red color and blue with lighter
+ weight.
+ The left one is the resulting density spread of the seagrass object with
+ respect to the weight.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The original density is measured by darkness of the appearing seagrass from
+ the satellite image.
+ Darker areas will have more weight and lighter areas will be 
+\begin_inset Quotes eld
+\end_inset
+
+lighter
+\begin_inset Quotes erd
+\end_inset
+
+ in density.
+ This results in a real world reconstruction of the area that can be investigate
+d in the simulator.
+ The generated environment is exported in .OBJ file format so it can be used
+ with any 3D program and system.
+ This is important due to recent (open source) robotic systems are using
+ open source mesh formats to be as flexible as possible and of course to
+ be as cost effective as possible.
+ This has a testing character to make sure that the robot is seeing the
+ real world as a model.
+ The identified field can later be used to calculate deviations.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+First, the shape of the seagrass meadow is taken like it is done in traditional
+ methods known from habitat mapping from aerial images.
+ This step is described in chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Data-Extraction-(Geoscientific)"
+
+\end_inset
+
+ and can be done with several plugins that can reach a maps server.
+ The .DAE file is loaded into Blender and is used as a template to produce
+ the weight field for seagrass meadow representation.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The weight field represents the exact area that is present in the QGIS section
+ to reproduce the meadows.
+ The only user interaction is a painting of the weight in different layers
+ so the distribution of the plants differs in some spots.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The weight field is used within a particle system that refers to the painted
+ weight as a vertex group which is representing the occurrence density of
+ plant meshes.
+ Because the density will be filled with objects, the type of the particle
+ system need to be set as "hair" which doesn't mean that the seagrass will
+ be as small as a hair but more that the appearing "hair" will be replaced
+ by the plant mesh.
+ By placing the meshes, the set of plants are exported as one object that
+ is loaded into UWSim.
+ It is important that only the selected group of plant objects are exported,
+ otherwise the seafloor mesh.
+ The seafloor is getting a ripple structure to indicate a shallow marine
+ environment.
+ The Texture is transformed into a height-map/displacement-map to simulate
+ the ripples.
+ The floor mesh becomes the ripple structure of the texture, which is indicated
+ here with a light source: 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/seafloor ripple structure_displacement_map_light_source_included.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The seafloor mesh with the displacement map (cf.
+ Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:seafloor_diff_disp_map_texture"
+
+\end_inset
+
+) and diffuse image texture, illuminated by a light source from the lower
+ left corner
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Other than the plants, the rocks in this environment are sculptured from
+ a sphere.
+ The rough shape is sculptured after subdividing the sphere several times
+ and then used the sculpt tools.
+ The reduce modifier minimizes the faces because a smaller mesh is positive
+ for the simulation due to resource consumption.
+ The mesh can be used for all occurring rocks.
+ This makes it easier to place several rocks without producing many meshes.
+ To spread diversity, the other rock objects are placed in groups and have
+ different scales.
+ The rocks differ to each other by taking up different textures.
+ For a high contrast a yellow and a blue texture is used.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+As the surface of the seafloor is produced, the weight tool (mentioned before)
+ is used to place the meshes of the plants.
+ Blender has a special mode for exactly this function that one has to activate.
+ It is possible to change the size (Radius) and the intensity (Weight) of
+ the brush (cf.
+ Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Blender-interface_weight_paint"
+
+\end_inset
+
+).
+ Dark blue color means light/no weight and dark red represents the heaviest
+ weight.
+ Green and yellow color are intermediate weight.
+ The accuracy of the weight depends, like the displacement, on the subdivision
+ of the mesh.
+ The more subdivisions are present, the more accurate the tool can be used.
+ Since subdivision means more faces and a bigger file size, it is necessary
+ to find a reasonable compromise between accuracy and machine power because
+ the bigger file size can later slow down the simulator a lot.
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/weightpaint scene 2.png
+	scale 43
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The Blender interface with the option to choose 
+\begin_inset Quotes eld
+\end_inset
+
+Weight Paint
+\begin_inset Quotes erd
+\end_inset
+
+ as one of the modes and the brush to paint the weight can be changed in
+ the upper left panel.
+ In this image one can see the production of scene 2.2 in which an anchor
+ ripped trench into a seagrass meadow.
+ The trench has no weight because no plant will be present there.
+ The modeling process can also be seen in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:reproducing_plant_spread"
+
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Blender-interface_weight_paint"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+As the weight and the borders of the seagrass are defined, the plant meshes
+ are placed into the vertex group.
+ As there are many plants that appear, the particle system needs to be set
+ as 
+\begin_inset Quotes eld
+\end_inset
+
+Hair
+\begin_inset Quotes erd
+\end_inset
+
+ which enables to set the number and length of the 
+\begin_inset Quotes eld
+\end_inset
+
+hairs
+\begin_inset Quotes erd
+\end_inset
+
+/plant meshes.
+ These numbers are given in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Seasons_and_growth"
+
+\end_inset
+
+ as 
+\begin_inset Quotes eld
+\end_inset
+
+Emission
+\begin_inset Quotes erd
+\end_inset
+
+ in chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Scenarios_chapter"
+
+\end_inset
+
+.
+ By using the 
+\begin_inset Quotes eld
+\end_inset
+
+Object
+\begin_inset Quotes erd
+\end_inset
+
+ option in the Render section, the hair placeholders are replaced by the
+ plant meshes.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/ParticleSystem_Blender.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Settings for the particle system in Blender with the number of hairs and
+ their length
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/Screenshot-Blender_weight.png
+	scale 25
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 0.2cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Screenshot-Blender_weight_rendered.png
+	scale 21
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Painted weight on the left image with weight values of: 0.2, 0.4, 0.6, 0.8 and
+ 1.0 - The right image shows the rendered outcome of the particle distribution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

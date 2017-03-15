@@ -1,0 +1,285 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Knowledge Based on Robots Experience
+\end_layout
+
+\begin_layout Standard
+\noindent
+The knowledge of the robot is defined in an ontology that contains all objects
+ and their specifications.
+ In this case its the name of the object with its color.
+ More detailed information can be added or linked to other ontologies that
+ represent a much deeper degree of detail.
+ Here, the knowledge is triggered by the incoming color on one of the ROS
+ topics.
+ Red represents crabs, green is indicating plants.
+ The knowledge of the robot here is very limited as all green objects are
+ plants for the robot as well as all purple objects are starfish.
+ Reality also holds green starfish and purple plants but for these scenarios
+ the knowledge is enough.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Semrec (the experience recorder mentioned in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Logging-Based-on-SEMREC"
+
+\end_inset
+
+) uses the knowledge to produce a time stamp connection to objects that
+ the user can ask for in Prolog language.
+ As the robot is 
+\begin_inset Quotes eld
+\end_inset
+
+seeing
+\begin_inset Quotes erd
+\end_inset
+
+ red color, Semrec sets a time stamp with the annotation of 
+\begin_inset Quotes eld
+\end_inset
+
+CrabInView
+\begin_inset Quotes erd
+\end_inset
+
+ that directly is connected to the 
+\begin_inset Quotes eld
+\end_inset
+
+Crab
+\begin_inset Quotes erd
+\end_inset
+
+ individual in the ontology that holds the background knowledge.
+ The result is a representation in Open-EASE that contain an experience
+ of a seen object which is described in the background knowledge.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+By using Open-EASE for the knowledge representation, it is possible to visualize
+ the robots experiences and show a feedback of using the knowledge.
+ The semantic background gives a response to identified objects and interaction
+ within the environment.
+ As the robot is exploring the surface and the objects, it is possible to
+ give a representation in QGIS and export the objects for Open-EASE to represent
+ the gained information.
+ As QGIS is able to produce polygons from the heat-map (see chapter 
+\begin_inset Quotes eld
+\end_inset
+
+Quantum GIS
+\begin_inset Quotes erd
+\end_inset
+
+), these are loaded into Open-EASE to present the experienced spread of
+ the plants.
+ By combining two of the polygons, a new polygon is produced which indicates
+ the difference (growth/loss) between both states.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/Screenshot-Mozilla Firefox.png
+	scale 26
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Open-EASE is able to display the knowledge the robot experienced during
+ the mission.
+ For the user it is possible to ask for things like "where in the map are
+ the living things".
+ The response will highlight all living things in the map
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The knowledge recognition is triggered by the color detection from OpenCV
+ so the recorder writes the 
+\begin_inset Quotes eld
+\end_inset
+
+link
+\begin_inset Quotes erd
+\end_inset
+
+ to the knowledge about the 
+\begin_inset Quotes eld
+\end_inset
+
+red object
+\begin_inset Quotes erd
+\end_inset
+
+ into the database with a time stamp so the semantic map can not only rebuild
+ the environment with the specific objects but also with the position of
+ the robot at the point it recognized the object.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/semrec.jpg
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Schematic diagram of how the episodic memory is written and the experience
+ gets linked to the knowledge while its displayed in Open-EASE.
+ The Knowledge and experience can be queried for in Prolog language
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

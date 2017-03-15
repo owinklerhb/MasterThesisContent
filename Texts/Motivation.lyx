@@ -1,0 +1,221 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\paragraph_spacing onehalf
+\noindent
+Motivation
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The motivation to this work comes from the claim to extend the methods of
+ geoscientific monitoring and observation of environments with the methods
+ of the artificial intelligence.
+ Robotic systems are already used to a certain extend in geoscientific fields
+ like the offshore industries for example.
+ This industry uses it to do tasks like maintenance, exploration and setup
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "45"
+
+\end_inset
+
+.
+ The industries attempt to be eco-friendly but they influence the environment
+ on the seafloor which takes them into the responsibility to monitor the
+ affected area.
+ To ensure this task on a reasonable level of costs, the traditional way
+ of mapping and monitoring needs to use an advanced approach which has the
+ potential to observe an environment over a long period of time and to notice
+ and mark significant changes.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+New technology brings opportunities for every field and so it is a chance
+ for geoscientists to not only use parts of the robotics but also of the
+ artificial intelligence.
+ The needed database for storing the knowledge already exists and is used
+ by other disciplines frequently.
+ Unfortunately these database systems are rarely used by geoscientists or
+ even associated with AUV robotic systems.
+ Existing AUV simulators offer options to generate data which makes it possible
+ to develop approaches for given cases.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+To access the knowledge about environment, tools are ready to use from the
+ side of the artificial intelligence.
+ One of the tools is Open-Ease, whose web client interface which access
+ the database of robotic knowledge to present it to the user who can query
+ the available data sets to understand robots behavior in the environment.
+ Due to the fact that the robots knowledge is represented within a database,
+ it is possible to widen it by additional knowledge from the geoscientific
+ field.
+ This enables admission not only for experts but also gives the opportunity
+ to others to extract knowledge from an environment.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+Many institutions are already working actively on topics concerning AUV
+ controlling, exploration and monitoring.
+ The DFKI (Deutsches Forschungszentrum für künstliche Intelligenz) is one
+ of the leading German institutes that is working on projects like AVALON
+ which is an autonomously driving AUV that is helping during maintenance
+ tasks.
+ Industrial applications for such a system for pipeline inspections is accomplis
+hed by Prof.
+ David Lane from Heriot-Watt University in Edinburgh, UK.
+ Others, like the interactive and robotics systems lab of the university
+ of Jaume, Spain, has developed a simulator for path planning and sensor
+ communication tests 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "29"
+
+\end_inset
+
+.
+ By cooperation with the university of Girona, the systems lab has developed
+ 
+\shape italic
+\size small
+Underwater Simulator
+\shape default
+\size default
+ (UWSim) which is directly integrated into the 
+\shape italic
+\size small
+Robot Operating System
+\shape default
+\size default
+ (ROS) to communicate with their developed AUVs 
+\shape italic
+\size small
+Girona500
+\shape default
+\size default
+ (G500) as well as 
+\shape italic
+\size small
+Sparus II
+\shape default
+\size default
+.
+ The simulator is highly configurable and also allows the user to even implement
+ real world physics that also includes current simulation and wave activity
+ on the surface.
+ It comes with many sensors like laser scanner, optical cameras, a stereo
+ camera, range sensor and many others that allow a detailed seafloor scanning
+ and makes it the optimal simulator for this work.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+This approach of work provides a possibility to use it as an autonomous
+ scientist that might operate in long-term missions to monitor environments
+ of high interest and scientific importance.
+ The field of robotics is a very fast growing and very interesting field
+ of work and as it is reaching more and more into daily life, its time to
+ implement it even more into the field of nature science and find tasks
+ that can be accomplished by autonomous systems.
+ The main motivation of this research is to learn more about how robotic
+ systems are able to use knowledge and transport it as artificial intelligence
+ to the real world to interact with it.
+ Also to evolve a simulated long-term mission with nature scientific approach
+ to develop a connection between the disciplines of the artificial intelligence
+ and geo science.
+\end_layout
+
+\end_body
+\end_document

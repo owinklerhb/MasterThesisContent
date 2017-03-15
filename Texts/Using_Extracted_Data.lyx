@@ -1,0 +1,287 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+Using Extracted Data 
+\size footnotesize
+(Robotics)
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+QGIS is able to read comma separated value files (.CSV format) and uses them
+ to produce a point layer.
+ The robotic system is producing such files which are used to represent
+ the detection of the environments objects and lead to a map that is representin
+g the detected objects.
+ The file includes: 
+\begin_inset Formula $1^{st}$
+\end_inset
+
+ the percentage of the occurring color/object, 
+\begin_inset Formula $2^{nd}$
+\end_inset
+
+ Latitude or Y-Coordinate.
+ 
+\begin_inset Formula $3^{rd}$
+\end_inset
+
+ Longitude or X-Coordinate and the filename of the photograph from the camera
+ with timestamp.
+ To present the points correctly into the map, a new coordinate reference
+ system is developed to produce the right coordinates.
+ UWSim is using the map frame as a reference system to produce the coordinates
+ so they must be calculated at two points:
+\end_layout
+
+\begin_layout Itemize
+Inside the detection and publishing code by multiplicating the longitude
+ by 3.2 and the latitude by 3.5.
+ 
+\shape italic
+\size small
+\color black
+(This is done to show a hand wheel on the robotics side)
+\end_layout
+
+\begin_layout Itemize
+Inside QGIS: The projects PseudoMercartor system is modified to fit the
+ points onto the satellite images: Robot reference system for Australia
+ (Green Island, Queensland) +proj=merc +a=6378145 +b=6378120 +lat_ts=0.0
+ +lon_0=145.96736 +x_0=0.3 +y_0=1892558 +k=1.0 +units=m +nadgrids=@null +wktext
+ +no_def 
+\shape italic
+\size small
+\color black
+(This is done to show a hand wheel on the GIS side - one of both steps is
+ mandatory)
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+As the coordinates as well as the occurrence density are recorded to the
+ CSV file, QGIS is able to produce a heat-map from the data.
+ Others are using this method to produce crime rate maps 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "28"
+
+\end_inset
+
+.
+ The heat-map is produced with fixed values so the changes of the growth
+ are visible.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways true
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/polygonized before.png
+	scale 35
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Polyginized after.png
+	scale 35
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The images are showing the heat-map of scene 1.2 (green) and 1.4 (red) on
+ the left and the polygonized shapes on the right.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+To get the data into a semantic map, the heat-map is vectorized into a polygon
+ and also reproduced as a mesh.
+ Therefore the meshes are used to be viewed in Open-EASE to show differences
+ while the data is also taken into a spread sheet to show statistical difference
+s in time.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/polygons_resuts.png
+	scale 32
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The produced heat-maps of the different stages are polygonized and extruded
+ to 3D meshes that are exported and given to Open-EASE to indicate differences
+ from one scene to another.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+As the 3D mesh of every scenario is produced, they are loaded into Open-EASE
+ to represent the area coverage of the Seagrass meadows.
+ By putting the results of two scenarios into one Open-EASE scene, one is
+ able to ask for the differences.
+ The varying coverage and differences are also shown in QGIS and are also
+ present on the resulting maps.
+ The data of the scenarios that is produced by the robot is present in QGIS
+ completely in different files so for every CSV file (kind of object) a
+ mesh is produced so different meshes for different tasks can be provided
+ to Open-EASE to work with later in the web interface.
+ For time reasons, only seagrass meshes are used in this work.
+ It's possible to produce meshes for every kind of object, detected by the
+ robot but for this work, on topic is enough to demonstrate the possibilities.
+\end_layout
+
+\end_body
+\end_document

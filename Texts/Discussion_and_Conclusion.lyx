@@ -1,0 +1,1655 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 4cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\paragraph_spacing onehalf
+\noindent
+Discussion and Conclusion
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+As the statistics already show, the first scenario has an undisturbed developmen
+t with an expected growth of the seagrass and therefore a detection that
+ delivers values of guidance.
+ Map 1 of Scene 1 shows a fair to low appearance of seagrass but Map 2 is
+ indicating a higher appearance.
+ It rises by more than 5% and the map indicates the difference.
+ Map 2 can truly indicate the outer borders of the meadows and the appearance
+ is even higher in map 3.
+ By rising of 18.45% compared to map 2, map 3 shows clearly the appearance
+ of the seagrass.
+ Map 4 is by a rise of 2.04% just a final step and results as fully developed
+ meadows.
+ The maps of Scene 1 are references to the other maps so a statement can
+ be made due to lower or higher detection of objects in the scenes.
+ As other objects than the seagrass plants are fix on the seafloor and don't
+ move, they can also be used as reference to the growing meadows.
+ As the meadows grow, they will outgrow the objects so more plants are detected,
+ while other objects are less detected.
+ This can clearly be seen in scene 1.
+ While the plants are detected more and more, the other objects like rocks,
+ getting less detected.
+ The only object that is experiencing a lower detection loss is the starfish
+ between scene 1.2 and 1.3.
+ While there are still individuals that are not detected, it is a trend
+ against the growth of the seagrass.
+ The loss of starfish detection is expected much higher in these scenes
+ since the growing rate between 1.2 and 1.3 is much higher than on the other
+ scenes.
+ Rocks and Crabs are showing a direct drop and starfish are running against
+ this trend.
+ On the one hand this can occur since the starfish are more located on the
+ rocks that are not covered by the plants therefore more get detected.
+ On the other hand, the results show a significant drop in the scene from
+ 1.3 to 1.4 and can also be seen on the maps 3 and 4.
+ Less starfish getting located on the eastern side as well as rocks.
+ The area between the southeastern meadow and the skull shaped meadow in
+ the middle of the eastern part show that the distribution of blue rocks
+ are decreasing as well as the starfish.
+ Crabs seem not as affected as other objects in that area.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+Map 1 of Scene 2 indicates that the robot has seen more seagrass but as
+ the initial sequence is always the same, the distribution must come from
+ a different influence to the simulation.
+ Since the simulator underlies a deterministic chaos (like everything in
+ nature), this can come from external influences like background calculations
+ of other software that nor necessarily needed to run and caused difficulties
+ during simulation or differences in the Geo Information System during Heat
+ map calculations.
+ Other results don't seem to have that problem since they are appearing
+ as expected.
+ In Map 2 of scene 2 an anchor tears a trench in the ground in the eastern
+ area from north to south.
+ By comparing Map 2.2 and 1.2, this can be indicated by the line of lower
+ appearance percentage of the seagrass.
+ Map 2.3 indicates this even more.
+ The trench is expected to disappear in map 2.4 since the growth of the seagrass
+ is as high as the trench should be covered for the vision of the robot
+ but by looking at map 2.4, the trench is still slightly visible.
+ This shows that the robot is capable to see this even after a renaturation
+ process.
+ By looking at map 2.3 and comparing it with 2.4, one fact appears to be strange
+ since the blue rocks of the lower middle part are appearing to be moved
+ or some kind of spread over the ground.
+ This can be explained by the coincidence of appearing in the vision field
+ of the robot.
+ The vision is set to take a picture at a frequency of 0.3 Hz.
+ This makes it likely that if one object appears half in the upper part
+ of the vision, it will appear also half but in the lower part of the vision.
+ Therefore one bigger object will be recognized as two smaller objects.
+ By looking more close to the produced data, this can be seen in 
+\begin_inset Quotes eld
+\end_inset
+
+BLUE_ROCKS_22-02-2017 10_53_22.png
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+BLUE_ROCKS_22-02-2017 10_53_25.png
+\begin_inset Quotes erd
+\end_inset
+
+ in the results of Scene 2.3:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /media/olaf/TOSHIBA 1TB/Master Thesis/Results/Scene 2/23/Blue Rocks/BLUE_ROCKS_22-02-2017 10_53_22.png
+	scale 65
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename /media/olaf/TOSHIBA 1TB/Master Thesis/Results/Scene 2/23/Blue Rocks/BLUE_ROCKS_22-02-2017 10_53_25.png
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Both pictures are taken from the robots camera stream while performing the
+ scanning mission.
+ The rocks appear twice in the picture but some parts of them are cut away.
+ In some cases this can lead in the results as two smaller objects instead
+ of one big
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Map 2.3_double_detection.png
+	scale 105
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Map 2.4_double_detection.png
+	scale 105
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+The images are from the detection area of scene 2.3 and 2.4 where the double
+ detection effect happened during performing the mission.
+ The Squares are the same size because the threshold of icon separation
+ doesn't go as deep as the original distinction in the data set
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+This can lead to confusion but only on a small scanning scale.
+ By looking at a bigger picture, this would truly not interfere with the
+ end result.
+ Also as the starfish is identified to be located on the more southern,
+ smaller rock, it can be interpreted that it is located on a larger rock
+ at the southern end.
+ This effect can also be seen in scene 3.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Scene 3 is equipped with a walkway that is casting shadow over the plants.
+ As the plants are dependent on sunlight and shadows are a threat for them,
+ they start to shrivel and disappear.
+ The walkway is located in the south eastern part of the scene 3 and can
+ be located even just by looking at the map.
+ While the coverage of seagrass plants seem to close the gap in map 3.3,
+ the next map shows that the gap not only stays there but becomes more wide.
+ The weight map of the area is prepared to become less weighted over time
+ and the surrounding plants seem to cover the outer parts of the gap in
+ 3.3 therefore as the plants become larger and more dense, they are expected
+ to cover the gap even more in 3.4 but it is as large as in 2.2 and larger
+ as in 3.3.
+ In map 3 the same effect applies to the environment as in map 2, that the
+ robot is able to see and reveal more than one expects and can show influences
+ even if they are not remain anymore.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Maps from scene 4 indicate a grazing process of a manatee.
+ These animals can be found in seagrass meadows as they graze the plants
+ for their food source.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Images/Dugong-and-cleaner-fish-graze-on-seagrass-Egypt-David-Peart-arabianEye.jpg
+	scale 250
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Manatee (or Dugong) grazing a seagrass meadow which represents its food
+ source
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Manatee-(or-Dugong)_grazing_image"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+It is very natural that an animal like this is grazing a seagrass meadow
+ but in times of climate change, habitats as well as food sources shift
+ into warmer areas.
+ Not only manatees are grazing the meadows.
+ As the seagrass environment is hosting a very wide range of animals, they
+ also represent a food source for many animals like birds or larger fish.
+ By hunting for smaller animals, others can damage the plants and leave
+ scars in the remaining meadow or even destroy the meadows if the grazing
+ is happening more often or by many individuals at the same time.
+ The manatee grazing is happening in scene 4.2 and the meadows are getting
+ affected.
+ Afterwards the remaining fields are just growing but if 4.3 and 4.4 are compared
+ to the undisturbed meadows, the remaining holes are humongous.
+ Keeping in mind, that the simulation in this work is exaggerated in terms
+ of growth and this is showing a one time affection, this is indicating
+ that a habitat shift can affect a meadow even harder.
+ In this work, the meadows seem to regenerate very fast but in reality these
+ plant colonies need much longer (many years) to regenerate to a stage like
+ this and as manatees may search for food several times a year, the impact
+ might be even magnitudes higher.
+\end_layout
+
+\begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+Robotics Knowledge
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+As the robot is producing episodic memory, it can be used external with
+ other software like RoboSherlock to identify the objects again and write
+ knowledge in terms of detection.
+ The system comes with specific knowledge about color as indicator for different
+ objects - this is definitely expandable and can truly be a good start for
+ future work.
+ In fact the robot detects objects by color and different objects can come
+ in the same color like red or blue plants (even under water) but in terms
+ of chemical analysis live in the water column with a chemical signature,
+ this approach can directly be used by changing the topic that the system
+ subscribes to.
+ Instead of optics, a chemical sensor can be used to identify the chemical
+ compound.
+ As mentioned in Chapter 4 (alternative scenarios), this could be anything,
+ like salinity, 
+\begin_inset Formula $CH_{4}$
+\end_inset
+
+ seepage, etc.
+ The robot is able to identify objects or changes in the environment as
+ 
+\begin_inset Quotes eld
+\end_inset
+
+objects
+\begin_inset Quotes erd
+\end_inset
+
+ so the semantic recognition is triggered due to the change.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Semantics started to come up in geo spatial data since the late 90's and
+ early 2000's and develop ever since.
+ The systems, handling these semantics and knowledge bases as flexible enough
+ to ensure that a new knowledge base can be added to an existing system
+ so everyone who attempts to work with a system like this, can be sure that
+ the knowledge contribution can be used if it is made based on a few rules.
+ One attempt can be to use the robot to produce data that can be added to
+ projects like OpenStreetMap, which comes with an hierarchical ontology,
+ or at least for projects like BioDB or Pangaea, a data publishing platform
+ for earth- and environmental Data.
+ 
+\end_layout
+
+\begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+Data Usage
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+Since the data from this work is based on a very low level, it is enough
+ to produce semantic maps with the possibility to query for the environment
+ and even point out changes.
+ The Plants in this work show a growing process that the automated robot
+ is able to record and even small differences can be seen in the data presentati
+on (s.
+ different maps in results).
+ Some changes that are not explicit in the maps can be found in the statistics
+ as well as in the semantic maps.
+ Some maps, like 1.4 and 2.4 look very similar but changes become clear after
+ a second look or if one is looking into the statistics.
+ Since the seagrass is clearly damaged in 2.4 and it is expected to have
+ less perceptions, since more of the plants are destroyed, it has on the
+ one hand ~300 perceptions more but on the other hand, the overall detection
+ of plants is 92.45% in 1.4 and only 85.84% in 2.4.
+ Therefore the detection of seagrass went down and comes with a loss of
+ overall biomass.
+ 
+\end_layout
+
+\begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+Carbon fixation
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+As the plants are storing carbon in the sediment, it can be calculated for
+ the different stages.
+ In the scenes, I took only high percentage values with always the same
+ frame conditions.
+ As mentioned in the goals, the value is given by 83
+\begin_inset Formula $\frac{g\,C}{m^{2}\,yr^{-1}}$
+\end_inset
+
+.
+ This would give the following overview:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Scene
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coverage
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coverage [
+\begin_inset Formula $m^{2}$
+\end_inset
+
+]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Carbon fixation [
+\begin_inset Formula $\frac{g\,C}{yr}$
+\end_inset
+
+]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.1%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.55
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+128.65
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.4%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+390.1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11.3%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+468.95
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Carbon uptake from scene 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Scene
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coverage
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coverage [
+\begin_inset Formula $m^{2}$
+\end_inset
+
+]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Carbon fixation [
+\begin_inset Formula $\frac{g\,C}{yr}$
+\end_inset
+
+]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.2%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+132.8
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.3%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+385.95
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.3%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+510.45
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Carbon uptake from scene 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Scene
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coverage
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coverage [
+\begin_inset Formula $m^{2}$
+\end_inset
+
+]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Carbon fixation [
+\begin_inset Formula $\frac{g\,C}{yr}$
+\end_inset
+
+]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.4%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+99.6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8.5%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+352.75
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.4%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+431.6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Carbon uptake from scene 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Scene
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coverage
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coverage [
+\begin_inset Formula $m^{2}$
+\end_inset
+
+]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Carbon fixation [
+\begin_inset Formula $\frac{g\,C}{yr}$
+\end_inset
+
+]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.2%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8.3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.6%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+107.9
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8.1%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+336.15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+Carbon uptake from scene 4
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This results in the following chart:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/chart_carbon_fixation.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\shape italic
+\size small
+\color black
+Carbon fixation of the scenes, based on the presumption of 83
+\begin_inset Formula $\frac{g\,C}{m^{2}\,yr^{-1}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The chart is showing an increasing carbon storage and this is clearly because
+ of the increasing plants and their growth.
+ The only counterpoint is that the detection found more potential storage
+ in 2.4.
+ This can result from either errors in detection (which is unlikely) or
+ minor aberrations in forming the heat map in QGIS.
+ On the other Hand, 2.4 has 298 perceptions more than 1.4 so either the settings
+ in Blender's particle map are different to or the robot might have driven
+ over a certain area twice.
+ This kind of evaluation might be a topic of further work.
+ Anyway the carbon fixation is showing an increasing trend which is put
+ on a par with the growth of the meadows in the sequences, except scene
+ 4 which is showing a decrease in 4.2 which is based on the big impact of
+ the grazing event.
+ If this would be a real world chart, the habitat healing would be enormously
+ fast since the grazing event has destroyed a huge amount of the meadows
+ area and the chart is indicating that the healing would normalize the carbon
+ fixation ability in a bit more than a year.
+ The shadow casting walkway is a fixed construction in the scene that isn't
+ disappearing like the other affecting objects.
+ As the object stays in the scene, it influences the overall meadow in a
+ sustainable way.
+ It keeps the fixation ability lower than a healing meadow or the unaffected
+ one.
+ This makes clear that a one-time event or a big impact is less destructive
+ to the fixation ability than an object that is influencing the plants over
+ a long time.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+As the shadow is reducing (and even killing) a part of the meadow, this
+ could also be adapted to a chemical inflow or something else that could
+ reduce the seagrass.
+ Normally an inflow is not only a one-time event but happens over a time
+ period.
+ This leads to changing chemical conditions in the environment so the plants
+ get affected by either algae or shrivel due to unhealthy conditions for
+ them.
+ Even if only one part of the are is affected, the overall process of carbon
+ fixation would be affected in a similar way as the walkway affects the
+ area.
+\end_layout
+
+\begin_layout Subsection
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The system is running very well with the optical sensor.
+ It is detecting the objects by their color and the gained data is collected
+ in GIS readable format as well as hierarchically.
+ This opens a connection between the artificial intelligence and geo sciences.
+ As the algorithm implements parts of robotics, it can be concluded that
+ geosciences and artifical intelligence are finding a connection on the
+ domain of robotics.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+The main geoscientific concern so far was to collect data and evaluate it
+ afterwards.
+ The main concern of artificial intelligence was to produce an environmental
+ framework to understand robotics behavior.
+ From the end point of this thesis, both can be done: Data colltection is
+ possible with this approach and the collected data can be used in Open-EASE
+ to evaluate the robots episodic memory.
+ Data representation is done in both disciplines and provides a new kind
+ of interdisciplinary mission review and analysis.
+ As the data is collected in several ways, the exploration can be rebuild
+ by both in their specific methods - semantic and traditional geoscientific
+ maps.
+ The traditional maps provide an insight to the observed scenery as all
+ objects are printed on a map.
+ These objects can be interacted with in the GIS and a user is able to produce
+ statistical calculations from it to produce predictions.
+ The AI scientists is able to use the gained data to evaluate the robots
+ behavior and recognition states.
+ As the robotic under water systems need to become smarter in every way,
+ this represents a cognition level for these systems with a geoscintific
+ domain.
+\end_layout
+
+\end_body
+\end_document
