@@ -1,0 +1,1 @@
+PROJCS["Mercator",GEOGCS["GCS_unnamed ellipse",DATUM["D_unknown",SPHEROID["Unknown",6378145,255125.8000025466]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Mercator"],PARAMETER["central_meridian",145.96736],PARAMETER["false_easting",0.3],PARAMETER["false_northing",1892558],UNIT["Meter",1],PARAMETER["standard_parallel_1",0.0]]
