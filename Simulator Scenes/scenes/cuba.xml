@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE UWSimScene SYSTEM "UWSimScene.dtd" >
+
+<UWSimScene>
+  <oceanState>
+    <windx> 0.04 </windx>
+    <windy> 0.04 </windy>
+    <windSpeed> 12 </windSpeed>
+    <depth> 1000 </depth>
+    <reflectionDamping> 0.35 </reflectionDamping>
+    <waveScale> 1e-7 </waveScale>
+    <isNotChoppy> 0 </isNotChoppy>
+    <choppyFactor> 2.5 </choppyFactor>
+    <crestFoamHeight> 2.2 </crestFoamHeight>
+    <oceanSurfaceHeight> 0 </oceanSurfaceHeight>
+    <fog>
+      <density> 0.1 </density>
+      <color>
+	<r>0</r>
+	<g>0.05</g>
+	<b>0.3</b>
+      </color>
+    </fog>
+    <color>
+      <r>0.0</r>
+      <g>0.05</g>
+      <b>0.3</b>
+    </color>
+    <attenuation>
+      <r>0.015</r>
+      <g>0.0075 </g>
+      <b> 0.005 </b>
+    </attenuation>
+  </oceanState>
+  <simParams>
+    <disableShaders> 0 </disableShaders>
+    <resw> 640 </resw>
+    <resh> 480 </resh>
+  </simParams>
+  <camera>
+    <freeMotion> 1 </freeMotion>
+    <fov> 60 </fov>
+    <aspectRatio> 1.33 </aspectRatio>
+    <near> 0.1 </near>
+    <far> 10000 </far>
+    <position>
+      <x>3</x>
+      <y>3 </y>
+      <z>3 </z>
+    </position> 
+    <lookAt>
+      <x>0</x>
+      <y>0 </y>
+      <z>0 </z>
+    </lookAt>
+
+  </camera>
+
+ <vehicle>
+    <name>floatingPlatform</name>
+    <file>data/scenes/FPARM5.urdf</file>
+    <jointValues>
+      <joint> 0 </joint>
+      <joint> 0</joint>
+      <joint> 2.2 </joint>
+      <joint> 0 </joint>
+      <joint>0.3 </joint>
+    </jointValues>
+    <position>
+      <x> 0.</x>
+      <y> 0 </y>
+      <z> -0.2 </z>
+    </position>
+  </vehicle>
+
+  <object>
+    <name> terrain </name>
+    <file> objects/cuba.3ds  </file>
+    <position>
+      <x> 0</x>
+      <y> 0 </y>
+      <z> -1.6 </z>
+    </position>
+    <orientation>
+      <r>0</r>
+      <p>0 </p>
+      <y>0 </y>
+    </orientation>
+  </object>
+
+  <object>
+    <name> floor </name>
+    <file> objects/tankFloor.osg  </file>
+    <position>
+      <x> 0.05</x>
+      <y> 0.36 </y>
+      <z> -1.5 </z>
+    </position>
+    <orientation>
+      <r>0</r>
+      <p>0 </p>
+      <y>0 </y>
+    </orientation>
+    <scaleFactor>
+      <x> 0.5 </x>
+      <y> 0.6 </y>
+      <z> 0.6</z>
+    </scaleFactor>
+  </object>
+
+  <object>
+    <name> amphora </name>
+    <file> objects/full_amphora.osg  </file>
+    <position>
+      <x> 0.00</x>
+      <y> 0.00 </y>
+      <z> -1.5 </z>
+    </position>
+    <orientation>
+      <r>-0.1</r>
+      <p>1.57 </p>
+      <y>0 </y>
+    </orientation>
+    <scaleFactor>
+      <x> 0.5 </x>
+      <y> 0.5 </y>
+      <z> 0.5 </z>
+    </scaleFactor>
+  </object>
+
+  <object>
+    <name> amphora2 </name>
+    <file> objects/amphora2.osg  </file>
+    <position>
+      <x> 0.00</x>
+      <y> 0.1 </y>
+      <z> -1.5 </z>
+    </position>
+    <orientation>
+      <r>0.7</r>
+      <p>1.0 </p>
+      <y>0 </y>
+    </orientation>
+    <scaleFactor>
+      <x> 0.5 </x>
+      <y> 0.5 </y>
+      <z> 0.5 </z>
+    </scaleFactor>
+  </object>
+
+  <object>
+    <name> amphora2-2 </name>
+    <file> objects/amphora2.osg  </file>
+    <position>
+      <x> 0.20</x>
+      <y> 0.1 </y>
+      <z> -1.5 </z>
+    </position>
+    <orientation>
+      <r>0.0</r>
+      <p>-1.57 </p>
+      <y>0.3 </y>
+    </orientation>
+    <scaleFactor>
+      <x> 0.5 </x>
+      <y> 0.5 </y>
+      <z> 0.5 </z>
+    </scaleFactor>
+  </object>
+
+  <object>
+    <name> amphora-2 </name>
+    <file> objects/full_amphora.osg  </file>
+    <position>
+      <x> 0.00</x>
+      <y> 0.30 </y>
+      <z> -1.5 </z>
+    </position>
+    <orientation>
+      <r>0</r>
+      <p>1.57 </p>
+      <y>0.8 </y>
+    </orientation>
+    <scaleFactor>
+      <x> 0.5 </x>
+      <y> 0.5 </y>
+      <z> 0.5 </z>
+    </scaleFactor>
+  </object>
+
+</UWSimScene>
+
